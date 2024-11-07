@@ -162,3 +162,23 @@ form div.incorrect input{
 #error-message{
   color:#f06272;
 }
+
+.exit {
+  background-color: var(--accent-color); /* Color de fondo */
+  border: none; /* Sin borde */
+  border-radius: 50%; /* Forma circular */
+  color: white; /* Color del icono */
+  padding: 10px; /* Espaciado interno */
+  font-size: 20px; /* Tamaño del icono */
+  cursor: pointer; /* Cambia el cursor al pasar */
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Posición absoluta para colocar en la esquina */
+  position: absolute;
+  top: 30px; /* Distancia desde la parte superior */
+  left: 15px; /* Distancia desde el borde izquierdo */
+}
