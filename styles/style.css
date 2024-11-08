@@ -182,12 +182,31 @@ form div.incorrect input{
   top: 30px; /* Distancia desde la parte superior */
   left: 15px; /* Distancia desde el borde izquierdo */
 }
+/* Barra superior */
+.header-bar {
+  width: 100%;
+  background-color: #333;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: left; /* Centra el contenido de la barra */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  color: #fff;
+  gap: 15px; /* Espacio entre el título y el menú */
+}
 
- /* Menú de hamburguesa */
- .menu-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
+/* Título del encabezado */
+.header-title {
+  font-size: 1.5em;
+  margin: 0;
+  color: #fff;
+}
+
+/* Ajuste del menú de hamburguesa */
+.menu-toggle {
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -202,13 +221,13 @@ form div.incorrect input{
   transition: 0.3s;
 }
 
-/* Menú */
+/* Menú desplegable */
 .menu {
   display: none;
   position: absolute;
-  top: 60px;
-  right: 20px;
-  background: rgba(0, 0, 0, 0.8);
+  top: 50px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.9);
   padding: 20px;
   border-radius: 8px;
 }
