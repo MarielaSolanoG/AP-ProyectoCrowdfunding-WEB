@@ -22,18 +22,25 @@ body{
   background-position: right;
   overflow: hidden;
 }
-.wrapper{
+.wrapper {
   box-sizing: border-box;
   background-color: var(--base-color);
-  height: 100vh;
   width: max(40%, 600px);
-  padding: 10px;
-  border-radius: 0 20px 20px 0;
+  padding: 20px; 
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  /* Centrado en la mitad de la pantalla */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
+
+
 h1{
   font-size: 3rem;
   font-weight: 900;
@@ -186,7 +193,7 @@ form div.incorrect input{
 .header-bar {
   width: 100%;
   background-color: #333;
-  padding: 15px 20px;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: left; /* Centra el contenido de la barra */
@@ -253,3 +260,8 @@ form div.incorrect input{
 .menu-open .menu {
   display: block;
 }
+
+.hidden {
+  display: none;
+}
+
