@@ -5,7 +5,6 @@ function handleProjectSelection() {
 
     projectSelect.addEventListener("change", function() {
         const projectId = projectSelect.value;
-        console.log(projectId)
         const project = projectsData[projectId];
         console.log(project.name)
         if (project) {
@@ -15,6 +14,23 @@ function handleProjectSelection() {
             document.getElementById("date-edit").value = project.date;
         }
     });
+}
+
+// Función que carga los datos del usuario logueado desde sessionStorage
+function loadLoggedInUser() {
+    const loggedInUserEmail = sessionStorage.getItem('loggedInUser');
+
+    if (loggedInUserEmail) {
+        const user = Object.values(usersData).find(user => user.email === loggedInUserEmail);
+
+        if (user) {
+            document.getElementById("firstname-input").value = user.firstname;
+            document.getElementById("identification-input").value = user.identification;
+            document.getElementById("telephone-input").value = user.telephone;
+            document.getElementById("wallet-input").value = user.wallet;
+            document.getElementById("work-area").value = user.workArea;
+        }
+    }
 }
 
 // Función que alterna la clase "menu-open" en el elemento <body>
@@ -81,4 +97,5 @@ document.addEventListener('DOMContentLoaded', () => {
     handleFormsVisibility();
     handleLogout();
     handleProjectSelection(); // Llamada para inicializar la selección del proyecto
+    loadLoggedInUser();
 });

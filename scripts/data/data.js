@@ -20,6 +20,7 @@ const projectsData = {
     }
 };
 
+// Datos simulados para Usuarios 
 const usersData = {
     1: {
         firstname: "Mariela",
@@ -28,7 +29,7 @@ const usersData = {
         identification: 305360375,
         telephone: 88667799,
         wallet: 1000,
-        workArea: "Computación"
+        workArea: "1"
     },
     2: {
         firstname: "Carlos",
@@ -37,7 +38,7 @@ const usersData = {
         identification: 302145698,
         telephone: 87543210,
         wallet: 1500,
-        workArea: "Ingeniería Electrónica"
+        workArea: "2"
     },
     3: {
         firstname: "Ana",
@@ -46,7 +47,7 @@ const usersData = {
         identification: 308965432,
         telephone: 89765432,
         wallet: 750,
-        workArea: "Diseño Industrial"
+        workArea: "3"
     },
     4: {
         firstname: "Luis",
@@ -55,7 +56,7 @@ const usersData = {
         identification: 307894563,
         telephone: 83451234,
         wallet: 2000,
-        workArea: "Administración de Empresas"
+        workArea: "1"
     }
 };
 

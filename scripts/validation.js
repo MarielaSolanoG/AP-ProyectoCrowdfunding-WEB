@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Selección de formularios y elementos de entrada comunes
     const form = document.getElementById('form-signup') || document.getElementById('form-login');
     const formCreateProject = document.getElementById('form-create-project');
+    const formEditProject = document.getElementById('form-create-project');
     const formEditDataUser = document.getElementById('form-edit');
     
     /* USER */
@@ -36,6 +37,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 errors = validateLoginForm();
                 // Redirigir si no hay errores
                 if (errors.length === 0) {
+                    const userEmail = emailInput.value;
+                    sessionStorage.setItem('loggedInUser', userEmail); // Guarda el correo electrónico del usuario en sessionStorage
                     window.location.href = "main_page_user.html";
                     return;
                 }
