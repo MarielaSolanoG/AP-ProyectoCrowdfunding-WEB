@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Main Page User</title>
   <link rel="stylesheet" href="/styles/style.css">
+  <script src="/scripts/data/data.js"></script>
   <script type="text/javascript" src="/scripts/main_page.js" defer></script>
   <script type="text/javascript" src="/scripts/validation.js" defer></script>
 </head>
@@ -17,7 +18,7 @@
       </div>
       <nav class="menu">
         <a href="#create_projects" id="create-projects-link">Creación de Proyectos</a>
-        <a href="#edit_projects">Edición de Proyectos</a>
+        <a href="#edit_projects" id="edit-projects-link">Edición de Proyectos</a>
         <a href="#list_projects">Listado de Proyectos</a>
         <a href="#donations_history">Historial de Donaciones</a>
         <a href="#account_configuration" id="account-settings-link">Configuración de la cuenta</a>
@@ -29,7 +30,7 @@
         </svg>
       </a>
     </div>
-    <!-- Creación de proyectos, inicialmente oculto -->
+    <!-- Creación de proyectos-->
     <div id = "wrapper-create-project" class="wrapper">
       <h1>Creación de Proyectos</h1>
       <p id="error-message-create"></p>
@@ -62,6 +63,52 @@
         
           <!-- Botón de "Crear" -->
           <button type="submit">Crear</button>
+        </div>
+        
+      </form>
+    </div>
+    <!-- Edición de proyectos, inicialmente oculto -->
+    <div id = "wrapper-edit-project" class="wrapper">
+      <h1>Edición de Proyectos</h1>
+      <p id="error-message-create"></p>
+      <form id="form-create-project">
+        <div>
+          <label for="projec-select"></label>
+          <select id="project-select" name="project-select">
+              <option value="" disabled selected hidden>Seleccione el proyecto a editar</option>
+              <option value="1">Proyecto 1</option>
+              <option value="2">Proyecto 2</option>
+              <option value="3">Proyecto 3</option>
+          </select>
+        </div>
+        <div>
+          <label for="project-name-edit"></label>
+          <input type="text" name="project-name" id="project-name-edit" placeholder="Nombre del Proyecto">
+        </div>
+        <div>
+          <label for="description"></label>
+          <input type="text" name="description" id="description-edit" placeholder="Descripción del Proyecto">
+        </div>
+        <div>
+          <label for="objective"></label>
+          <input type="number" name="objective" id="objective-edit" placeholder="Objetivo de Financiación">
+        </div> 
+        <h2>Fecha límite de recaudación:</h2>
+        <div>
+          <label for="date"></label>
+          <input type="date" id="date-edit" name="date-input">
+        </div>
+        <div class="button-container">
+          <!-- Botón para añadir imagen o video -->
+          <button id="upload-btn" class="upload-button" title="Añadir imagen o video">
+            <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+              <path d="M480-480ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h320v80H200v560h560v-320h80v320q0 33-23.5 56.5T760-120H200Zm40-160h480L570-480 450-320l-90-120-120 160Zm440-320v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z"/>
+            </svg>
+            <input type="file" id="file-input" accept="image/*,video/*" style="display: none;">
+          </button>
+        
+          <!-- Botón de "Editar" -->
+          <button type="submit">Editar</button>
         </div>
         
       </form>

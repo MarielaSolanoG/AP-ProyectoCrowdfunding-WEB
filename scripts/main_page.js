@@ -1,3 +1,22 @@
+
+// Función que rellena el formulario al seleccionar un proyecto
+function handleProjectSelection() {
+    const projectSelect = document.getElementById("project-select");
+
+    projectSelect.addEventListener("change", function() {
+        const projectId = projectSelect.value;
+        console.log(projectId)
+        const project = projectsData[projectId];
+        console.log(project.name)
+        if (project) {
+            document.getElementById("project-name-edit").value = project.name;
+            document.getElementById("description-edit").value = project.description;
+            document.getElementById("objective-edit").value = project.objective;
+            document.getElementById("date-edit").value = project.date;
+        }
+    });
+}
+
 // Función que alterna la clase "menu-open" en el elemento <body>
 function toggleMenu() {
     document.body.classList.toggle("menu-open");
@@ -26,6 +45,7 @@ function handleFormsVisibility() {
     const links = [
         { link: document.getElementById('account-settings-link'), form: document.getElementById('wrapper-data-edit') },
         { link: document.getElementById('create-projects-link'), form: document.getElementById('wrapper-create-project') },
+        { link: document.getElementById('edit-projects-link'), form: document.getElementById('wrapper-edit-project') },
     ];
 
     // Función para ocultar todos los formularios
@@ -60,4 +80,5 @@ document.addEventListener('DOMContentLoaded', () => {
     handleFileUpload();
     handleFormsVisibility();
     handleLogout();
+    handleProjectSelection(); // Llamada para inicializar la selección del proyecto
 });

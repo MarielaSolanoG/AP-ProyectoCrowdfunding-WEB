@@ -129,7 +129,18 @@ document.addEventListener('DOMContentLoaded', function() {
             errors.push('La contraseña debe tener al menos 6 caracteres');
             passwordInput.parentElement.classList.add('incorrect');
         }
-
+        else {
+            // Buscar el usuario en `usersData`
+            const user = Object.values(usersData).find(user => user.email === emailInput.value);
+    
+            // Validar que el usuario exista y que la contraseña sea correcta
+            if (!user) {
+                errors.push("El usuario no existe.");
+            } else if (passwordInput.value !== user.password) { 
+                errors.push("Contraseña incorrecta.");
+            }
+        }
+    
         return errors.filter(error => error !== null);
     }
 
