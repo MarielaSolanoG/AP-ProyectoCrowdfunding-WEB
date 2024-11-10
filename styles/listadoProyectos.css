@@ -19,6 +19,10 @@
     color:#3B005E;
 }
 
+.navHeader_header-bar {
+    width: 100% !important;
+}
+
 .listado-body {
     font-family: Poppins, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     background-color: #FFF;
