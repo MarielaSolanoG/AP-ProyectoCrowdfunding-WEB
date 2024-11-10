@@ -45,6 +45,13 @@ h1{
   font-size: 3rem;
   font-weight: 900;
   text-transform: uppercase;
+  line-height: 1; /* Ajusta el interlineado;*/
+}
+h2{
+  font-size: 1rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1; /* Ajusta el interlineado;*/
 }
 form{
   width: min(400px, 100%);
@@ -147,6 +154,30 @@ form button:focus{
   outline: none;
   background-color: var(--text-color);
 }
+
+/* Estilo específico para el botón de "Añadir imagen o video" */
+.upload-button svg {
+  width: 40px; 
+  height: 40px; 
+}
+
+.upload-button {
+  background-color: #b74ba1; /* Color verde para distinguirlo */
+  color: white;
+  padding: 1em 2em; 
+  border-radius: 15px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contenedor de los botones */
+.button-container {
+  display: flex; /* Usamos Flexbox */
+  gap: 15px; /* Espacio entre los botones */
+  align-items: center; /* Centrar los botones verticalmente */
+}
+
 a{
   text-decoration: none;
   color: var(--accent-color);
@@ -166,8 +197,8 @@ form div.incorrect label{
 form div.incorrect input{
   border-color: #f06272;
 }
-#error-message{
-  color:#f06272;
+.error-message {
+  color: #f06272;
 }
 
 .exit {
@@ -202,15 +233,10 @@ form div.incorrect input{
   left: 0;
   z-index: 1000;
   color: #fff;
-  gap: 15px; /* Espacio entre el título y el menú */
+  gap: 93.5%; 
 }
 
-/* Título del encabezado */
-.header-title {
-  font-size: 1.5em;
-  margin: 0;
-  color: #fff;
-}
+
 
 /* Ajuste del menú de hamburguesa */
 .menu-toggle {
