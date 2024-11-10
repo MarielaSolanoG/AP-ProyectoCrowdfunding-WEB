@@ -75,19 +75,51 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Verificar si el formulario de crear proyecto está presente antes de agregar el eventListener
     if (formCreateProject) {
-        formCreateProject.addEventListener('submit', (e) => {
+        formCreateProject.addEventListener('submit', async (e) => {
             e.preventDefault();
-            let errors = [];
-            errors = validateCreateProject();
+            
+            // Realizar la validación del formulario
+            let errors = validateCreateProject();
             console.log('Edit Create Errors:', errors); // Depuración
+
             if (errors.length > 0) {
+                // Muestra los mensajes de error si hay algún problema en la validación
                 errorMessageCreate.classList.add('error-message');
                 errorMessageCreate.innerText = errors.join(". ");
-            }else{
-                formCreateProject.submit()
+            } else {
+                // Si no hay errores, enviar el formulario a la API
+                const projectData = {
+                    id_usuario: 2,  
+                    nombre_proyecto: projectNameInput.value,
+                    descripcion: descriptionInput.value,
+                    objetivo_financiacion: objectiveInput.value,
+                    fecha_limite: dateInput.value,
+                    categoria_id: 1
+                };
+
+                try {
+                    const response = await fetch('https://backendproyap-production.up.railway.app/insertProyecto', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(projectData)
+                    });
+
+                    if (response.ok) {
+                        alert('Proyecto insertado con éxito');
+                        formCreateProject.reset(); // limpia el formulario después de un envío exitoso
+                    } else {
+                        const errorText = await response.text();
+                        alert('Error al insertar proyecto: ' + errorText);
+                    }
+                } catch (error) {
+                    alert('Error en la solicitud: ' + error.message);
+                }
             }
         });
     }
+
 
     // Verificar si el formulario de editar datos está presente antes de agregar el eventListener
     if (formEditDataUser) {
@@ -194,6 +226,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         return errors.filter(error => error !== null);
     }
+
+    
 
     // Validación para el formulario de edición de proyecto
     function validateEditProject() {
