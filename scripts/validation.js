@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     if (response.ok) {
                         alert('Proyecto insertado con éxito');
-                        formCreateProject.reset(); // Opcional: limpia el formulario después de un envío exitoso
+                        formCreateProject.reset(); // limpia el formulario después de un envío exitoso
                     } else {
                         const errorText = await response.text();
                         alert('Error al insertar proyecto: ' + errorText);
