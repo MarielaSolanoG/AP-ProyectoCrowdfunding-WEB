@@ -86,7 +86,7 @@ const cardsData = [
 
 document.addEventListener("DOMContentLoaded", function () {
     const cardsContainer = document.getElementById("cards-container");
-    console.log(cardsContainer);
+    //console.log(cardsContainer);
 
     cardsData.forEach((card) => {
         const cardElement = document.createElement("div");

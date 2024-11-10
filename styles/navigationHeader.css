@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
+
+html {
+    font-family: Poppins, Segoe UI, sans-serif;
+    color: var(--text-color);
+}
+
+.navHeader_header-bar {
+    width: 100%;
+    background-color: #333;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    /* top: 0; */
+    /* left: 0; */
+    z-index: 1000;
+    color: #fff;
+    /* gap: 93.5%; */
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+
+
+.navHeader_menu-toggle {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    width: 30px;
+}
+
+.navHeader_menu-toggle span {
+    height: 3px;
+    background: #fff;
+    margin: 5px 0;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.navHeader_menu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.navHeader_menu a {
+    color: #fff !important;
+    text-decoration: none !important;
+    display: block !important;
+    margin: 10px 0 !important;
+    cursor:pointer !important;
+    text-align:justify !important;
+}
+
+.navHeader_menu-open .navHeader_menu-toggle span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navHeader_menu-open .navHeader_menu-toggle span:nth-child(2) {
+    opacity: 0;
+}
+
+.navHeader_menu-open .navHeader_menu-toggle span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.navHeader_menu-open .navHeader_menu {
+    display: block;
+}
+
+.navHeader_logout-icon {
+    color: #e8eaed;
+    display: flex;
+    align-items: center;
+}
+
+.navHeader_hidden {
+    display: none;
+}

@@ -7,11 +7,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
   <link rel="stylesheet" href="/styles/listadoProyectos.css">
   <script src="/scripts/listadoProyectos.js"></script>
+  <script src="../scripts/navigationHeader.js"></script>
 </head>
-<body>
-<h1 style="color:#3B005E;">Listado de Proyectos</h1>
+<body class="listado-body">
+
+<h1 class="listado-h1" >Listado de Proyectos</h1>
+
 <div id="cards-container"></div>
-<button class="btn donar-btn" style="margin-top: 20px;margin-bottom: 20px;" onclick="openModal()">Historial de Donaciones</button>
+
+<div style="width: 80%; display: flex; align-items: center; justify-content:center"><button class="btn donar-btn" style="margin-top: 20px;margin-bottom: 20px;" onclick="openModal()">Historial de Donaciones</button>
+</div>
 <!-- Modal -->
 <div id="modal" class="modal">
   <div class="modal-content">

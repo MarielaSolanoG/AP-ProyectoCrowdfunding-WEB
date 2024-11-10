@@ -12,27 +12,24 @@
     --card-width: 400px;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-}
-h1 {
+.listado-h1 {
     font-size: 3rem;
     font-weight: 900;
     text-transform: uppercase;
+    color:#3B005E;
 }
 
-body {
+.listado-body {
     font-family: Poppins, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     background-color: #FFF;
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-evenly;
-    padding: 20px;
-    align-content: center;
-    flex-direction: column;
+    align-content: stretch;
+    flex-direction: row;
     align-items: center;
     max-height: 100vh;
+    max-width: 100vw;
+    flex-wrap: wrap;
 }
 
 #cards-container {

@@ -33,11 +33,6 @@ function loadLoggedInUser() {
     }
 }
 
-// Función que alterna la clase "menu-open" en el elemento <body>
-function toggleMenu() {
-    document.body.classList.toggle("menu-open");
-}
-
 // Función para manejar el botón de carga de archivo
 function handleFileUpload() {
     const uploadButton = document.getElementById("upload-btn");
@@ -56,46 +51,34 @@ function handleFileUpload() {
     });
 }
 
-// Función para manejar la visibilidad de formularios según el enlace clicado
-function handleFormsVisibility() {
+// Inicialización de los eventos una vez que el DOM esté cargado
+document.addEventListener('DOMContentLoaded', () => {
+    handleFileUpload();
+    handleProjectSelection(); // Llamada para inicializar la selección del proyecto
+    loadLoggedInUser();
+});
+
+// Script en main_page_user.html para mostrar el formulario correcto
+window.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const formId = urlParams.get('form');
+
     const links = [
         { link: document.getElementById('account-settings-link'), form: document.getElementById('wrapper-data-edit') },
         { link: document.getElementById('create-projects-link'), form: document.getElementById('wrapper-create-project') },
         { link: document.getElementById('edit-projects-link'), form: document.getElementById('wrapper-edit-project') },
     ];
 
-    // Función para ocultar todos los formularios
-    function hideAllForms() {
-        links.forEach(item => {
-            item.form.classList.add('hidden'); // Añade la clase 'hidden' para ocultar cada formulario
-        });
+    if (formId) {
+        const formToShow = document.getElementById(formId);
+        if (formToShow) {
+
+            links.forEach(item => {
+                item.form.classList.add('hidden'); // Añade la clase 'hidden' para ocultar cada formulario
+            });
+
+            formToShow.classList.toggle('hidden'); // Alterna la visibilidad del formulario
+        }
     }
-
-    // Asigna el evento a cada enlace
-    links.forEach(item => {
-        item.link.addEventListener('click', (event) => {
-            event.preventDefault();
-            hideAllForms(); // Oculta todos los formularios
-            item.form.classList.toggle('hidden'); // Muestra el formulario asociado al enlace clicado
-        });
-    });
-}
-
-// Función para manejar el evento de cierre de sesión
-function handleLogout() {
-    const logoutIcon = document.querySelector('.logout-icon');
-    logoutIcon.addEventListener('click', (event) => {
-        event.preventDefault();  // Evita el comportamiento predeterminado del enlace
-        console.log('Cerrar sesión');
-        window.location.href = 'login.html'; // Redirige al login
-    });
-}
-
-// Inicialización de los eventos una vez que el DOM esté cargado
-document.addEventListener('DOMContentLoaded', () => {
-    handleFileUpload();
-    handleFormsVisibility();
-    handleLogout();
-    handleProjectSelection(); // Llamada para inicializar la selección del proyecto
-    loadLoggedInUser();
 });
+
