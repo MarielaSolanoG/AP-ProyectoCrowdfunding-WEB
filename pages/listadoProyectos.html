@@ -19,26 +19,65 @@
 </div>
 
 
-<!-- HTML actualizado con prefijo detalles_ -->
+<!-- Modal de Detalles -->
 <div id="detalles_modal" class="detalles_modal">
   <div class="detalles_modal-content">
-    <h2 id="detalles_modal-title" class="detalles_ios-modal-title"></h2>
-    <p id="detalles_modal-description" class="detalles_ios-modal-description"></p>
+    <h2 id="detalles_modal-title" class="detalles-modal-title"></h2>
+    <p id="detalles_modal-description" class="detalles-modal-description"></p>
     <div class="progress-bar">
       <div class="progress" id="detalles_modal-progress-bar"></div>
       <span class="progress-text" id="detalles_modal-progress-text"></span>
     </div>
-    <p class="detalles_ios-modal-label"><b>Fecha límite de recaudación:</b> <span id="detalles_modal-date"></span></p>
-    <p class="detalles_ios-modal-label"><b>Creador:</b> <span id="detalles_modal-creator"></span></p>
-    <p class="detalles_ios-modal-label"><b>Categoría:</b> <span id="detalles_modal-category"></span></p>
-    <p class="detalles_ios-modal-label"><b>Creado el:</b> <span id="detalles_modal-created-date"></span></p>
-    <p class="detalles_ios-modal-label"><b>Imagen:</b></p>
-    <div class="detalles_ios-image-container">
-      <img id="detalles_modal-image" src="" alt="Imagen del proyecto" class="detalles_ios-modal-image">
+    <p class="detalles-modal-label"><b>Fecha límite de recaudación:</b> <span id="detalles_modal-date"></span></p>
+    <p class="detalles-modal-label"><b>Creador:</b> <span id="detalles_modal-creator"></span></p>
+    <p class="detalles-modal-label"><b>Categoría:</b> <span id="detalles_modal-category"></span></p>
+    <p class="detalles-modal-label"><b>Creado el:</b> <span id="detalles_modal-created-date"></span></p>
+    <p class="detalles-modal-label"><b>Imagen:</b></p>
+    <div class="detalles-image-container">
+      <img id="detalles_modal-image" src="" alt="Imagen del proyecto" class="detalles-modal-image">
     </div>
     <button class="detalles_close-modal" onclick="detalles_closeModal()">Regresar</button>
   </div>
 </div>
+<!-- Modal de Detalles -->
+
+
+
+<!-- Modal de Donaciones -->
+<div id="donation-modal" class="detalles_modal">
+  <div class="detalles_modal-content">
+    <h2 id="donation-modal-title" class="detalles-modal-title">Donación para el Proyecto</h2>
+    <p id="donation-modal-description" class="detalles-modal-description"></p>
+    <div class="progress-bar">
+      <div class="progress" id="donation-modal-progress"></div>
+      <span id="donation-modal-progress-text" class="progress-text"></span>
+    </div>
+    <p class="detalles-modal-label" id="donation-modal-deadline"></p>
+
+    <form id="donation-modal-form">
+      <label for="donation-modal-donorName" class="detalles-modal-label">Nombre del Donante:</label>
+      <input type="text" id="donation-modal-donorName" class="detalles_input" name="donorName" required>
+
+      <label for="donation-modal-donorEmail" class="detalles-modal-label">Correo:</label>
+      <input type="email" id="donation-modal-donorEmail" class="detalles_input" name="donorEmail" required>
+
+      <label for="donation-modal-donorPhone" class="detalles-modal-label">Teléfono:</label>
+      <input type="tel" id="donation-modal-donorPhone" class="detalles_input" name="donorPhone" required>
+
+      <label for="donation-modal-donorFunds" class="detalles-modal-label">Fondos Disponibles:</label>
+      <input type="text" id="donation-modal-donorFunds" class="detalles_input" name="donorFunds" readonly>
+
+      <label for="donation-modal-donationAmount" class="detalles-modal-label">Monto de la Donación:</label>
+      <input type="number" id="donation-modal-donationAmount" class="detalles_input" name="donationAmount" min="1" required>
+
+      <div class="detalles_modal-buttons">
+        <button type="submit" class="btn donar-btn">DONAR</button>
+        <button type="button" class="btn detalles-btn" onclick="closeDonationModal()">CANCELAR</button>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- Modal de Donaciones -->
 
 
 

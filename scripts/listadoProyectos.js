@@ -6,6 +6,7 @@ const cardsData = [
         recaudado: 254516.0,
         totalRecaudar: 500000.0,
         fecha: "2025-12-01",
+        creacion: "2024-12-01",
         imagenURL: "https://images.unsplash.com/photo-1522444195799-478538b28823?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         categoria: "Educación",
         creadorNombre: "Juan Pérez"
@@ -17,6 +18,7 @@ const cardsData = [
         recaudado: 135000.0,
         totalRecaudar: 200000.0,
         fecha: "2025-06-01",
+        creacion: "2024-06-01",
         imagenURL: "https://images.unsplash.com/photo-1522444195799-478538b28823?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         categoria: "Ciencias",
         creadorNombre: "Ana Gómez"
@@ -28,6 +30,7 @@ const cardsData = [
         recaudado: 78000.0,
         totalRecaudar: 150000.0,
         fecha: "2025-09-01",
+        creacion: "2024-09-01",
         imagenURL: "https://images.unsplash.com/photo-1522444195799-478538b28823?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         categoria: "Educación",
         creadorNombre: "Carlos Rodríguez"
@@ -39,6 +42,7 @@ const cardsData = [
         recaudado: 95000.0,
         totalRecaudar: 180000.0,
         fecha: "2025-11-15",
+        creacion: "2024-11-15",
         imagenURL: "https://images.unsplash.com/photo-1464146072230-91cabc968266?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         categoria: "Tecnología",
         creadorNombre: "Laura Sánchez"
@@ -50,6 +54,7 @@ const cardsData = [
         recaudado: 120000.0,
         totalRecaudar: 250000.0,
         fecha: "2025-08-01",
+        creacion: "2024-08-01",
         imagenURL: "https://images.unsplash.com/photo-1464146072230-91cabc968266?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         categoria: "Educación",
         creadorNombre: "María López"
@@ -61,6 +66,7 @@ const cardsData = [
         recaudado: 60000.0,
         totalRecaudar: 120000.0,
         fecha: "2025-10-10",
+        creacion: "2024-10-10",
         imagenURL: "https://images.unsplash.com/photo-1464146072230-91cabc968266?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         categoria: "Ciencias",
         creadorNombre: "Felipe Martínez"
@@ -72,6 +78,7 @@ const cardsData = [
         recaudado: 142000.0,
         totalRecaudar: 300000.0,
         fecha: "2025-07-20",
+        creacion: "2024-07-20",
         imagenURL: "https://images.unsplash.com/photo-1464146072230-91cabc968266?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         categoria: "Historia",
         creadorNombre: "José Pérez"
@@ -83,6 +90,7 @@ const cardsData = [
         recaudado: 110000.0,
         totalRecaudar: 200000.0,
         fecha: "2025-05-30",
+        creacion: "2024-05-30",
         imagenURL: "https://images.unsplash.com/photo-1464146072230-91cabc968266?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         categoria: "Tecnología",
         creadorNombre: "Raúl González"
@@ -94,6 +102,7 @@ const cardsData = [
         recaudado: 50000.0,
         totalRecaudar: 100000.0,
         fecha: "2025-09-15",
+        creacion: "2024-09-15",
         imagenURL: "https://images.unsplash.com/photo-1522444195799-478538b28823?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         categoria: "Educación",
         creadorNombre: "Sofía González"
@@ -105,11 +114,15 @@ const cardsData = [
         recaudado: 180000.0,
         totalRecaudar: 300000.0,
         fecha: "2025-12-05",
+        creacion: "2024-12-05",
         imagenURL: "https://images.unsplash.com/photo-1522444195799-478538b28823?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         categoria: "STEM",
         creadorNombre: "Luis Pérez"
     }
 ];
+
+
+
 
 
 
@@ -157,15 +170,15 @@ document.addEventListener("DOMContentLoaded", function () {
             <h2 class="cardTitulo">${card.titulo}</h2>
             <p class="cardDescription">${card.descripcion}</p>
             <div>
-                <div class="cardMiddleSection">
+                <div >
                     <div class="progress-bar">
                         <div class="progress" style="width: ${progressPercentage}%"></div>
                         <span class="progress-text">$${card.recaudado.toFixed(2)} de $${card.totalRecaudar.toFixed(2)}</span>
                     </div>
                     <p class="cardDueDate"><b>Fecha límite de recaudación:</b> ${card.fecha}</p>
                 </div>
-                <div class="cardActionButtons">
-                    <button class="btn donar-btn">Donar</button>
+                <div >
+                    <button class="btn donar-btn" onclick='openDonationModal()'>Donar</button>
                     <button class="btn detalles-btn" onclick='detalles_openModal(${card.id})'>Detalles</button>
                 </div>
             </div>
@@ -182,3 +195,49 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 });
+
+
+/* ------------------------------ MODAL DONACIONES ------------------------------ */
+// Función para abrir el modal de donaciones con detalles del proyecto
+function openDonationModal(id) {
+    // Busca el proyecto por ID
+    const card = cardsData.find(card => card.id === id);
+    if (!card) {
+        console.error("Proyecto no encontrado");
+        return;
+    }
+
+    // Asigna los valores a los elementos del modal
+    document.getElementById("donation-modal-title").textContent = `Donación para: ${card.titulo}`;
+    document.getElementById("donation-modal-description").textContent = card.descripcion;
+    document.getElementById("donation-modal-progress").style.width = (card.recaudado / card.totalRecaudar) * 100 + '%';
+    document.getElementById("donation-modal-progress-text").textContent = `$${card.recaudado.toFixed(2)} de $${card.totalRecaudar.toFixed(2)}`;
+    document.getElementById("donation-modal-deadline").textContent = `Fecha límite: ${card.fecha}`;
+
+    // Carga valores por defecto a los campos
+    document.getElementById("donation-modal-donorName").value = "Jerson Prendas";
+    document.getElementById("donation-modal-donorEmail").value = "jerson@estudaintec.cr";
+    document.getElementById("donation-modal-donorPhone").value = "85667799";
+    document.getElementById("donation-modal-donorFunds").value = "$100.00";
+
+    document.getElementById("donation-modal").style.display = "flex";
+}
+
+// Función para cerrar el modal
+function closeDonationModal() {
+    document.getElementById("donation-modal").style.display = "none";
+}
+
+// Agrega event listeners a los botones de donación
+function createDonationButtons() {
+    document.querySelectorAll('.btn.donar-btn').forEach((button, index) => {
+        button.addEventListener('click', () => {
+            openDonationModal(cardsData[index].id);
+        });
+    });
+}
+
+// Asegura que los listeners se añadan al cargar la página
+document.addEventListener("DOMContentLoaded", createDonationButtons);
+
+/* ------------------------------ MODAL DONACIONES ------------------------------ */

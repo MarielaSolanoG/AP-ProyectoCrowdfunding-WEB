@@ -287,7 +287,7 @@
 
 
 
-/* ------------------------------ MODAL ------------------------------ */
+/* ------------------------------ MODAL DETALLES ------------------------------ */
 /* CSS para el modal con prefijo detalles_ */
 
 .detalles_modal {
@@ -328,7 +328,7 @@
     }
 }
 
-.detalles_ios-modal-title {
+.detalles-modal-title {
     font-size: 1.8rem;
     font-weight: 700;
     color: #3B005E;
@@ -336,21 +336,21 @@
     margin-bottom: 10px;
 }
 
-.detalles_ios-modal-description {
+.detalles-modal-description {
     font-size: 1rem;
     color: #333;
     margin-bottom: 15px;
     text-align: justify;
 }
 
-.detalles_ios-modal-label {
+.detalles-modal-label {
     font-size: 0.9rem;
     color: #6B4200;
     margin-bottom: 5px;
     font-weight: 600;
 }
 
-.detalles_ios-modal-label span {
+.detalles-modal-label span {
     color: #000;
     font-weight: 400;
 }
@@ -371,7 +371,7 @@
     transition: width 0.3s ease;
 }
 
-.detalles_ios-progress-text {
+.detalles-progress-text {
     font-size: 0.9rem;
     margin-top: 5px;
     color: #6B4200;
@@ -379,7 +379,7 @@
     text-align: center;
 }
 
-.detalles_ios-image-container {
+.detalles-image-container {
     width: 100%;
     height: 30dvh; /* Limita la altura del contenedor */
     overflow-y: scroll; /* Asegura el scroll vertical */
@@ -390,7 +390,7 @@
     position: relative;
 }
 
-.detalles_ios-modal-image {
+.detalles-modal-image {
     width: 100%;
     /*height: 100%;  */
     object-fit: cover; /* Recorta la imagen si es mayor */
@@ -400,17 +400,17 @@
 
 
 /* Scrollbar compatibility for multiple browsers */
-.detalles_ios-image-container::-webkit-scrollbar {
+.detalles-image-container::-webkit-scrollbar {
     width: 0px;
     height: 8px;
 }
 
-.detalles_ios-image-container::-webkit-scrollbar-track {
+.detalles-image-container::-webkit-scrollbar-track {
     background: #E8E2F4;
     border-radius: 10px;
 }
 
-.detalles_ios-image-container::-webkit-scrollbar-thumb {
+.detalles-image-container::-webkit-scrollbar-thumb {
     background-color: #766F84;
     border-radius: 10px;
     border: 0px solid #E8E2F4;
@@ -444,13 +444,13 @@
         padding: 15px 20px;
     }
 
-    .detalles_ios-modal-title {
+    .detalles-modal-title {
         font-size: 1.5rem;
     }
 
-    .detalles_ios-modal-description,
-    .detalles_ios-modal-label,
-    .detalles_ios-progress-text {
+    .detalles-modal-description,
+    .detalles-modal-label,
+    .detalles-progress-text {
         font-size: 0.85rem;
     }
 
@@ -458,7 +458,101 @@
         padding: 8px 16px;
     }
 }
+/* ------------------------------ MODAL DETALLES ------------------------------ */
 
 
 
 
+/* ------------------------------ MODAL DONACIONES ------------------------------ */
+/* Estilos del Modal de Donaciones */
+/* Reutilizando estilos y propiedades existentes */
+.donation-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    animation: detalles_slide-up 0.3s ease-out;
+}
+
+.donation-modal-content {
+    background-color: #ffffff;
+    border-radius: 16px;
+    max-width: 600px;
+    width: 90%;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    font-family: 'Poppins', sans-serif;
+}
+
+.donation-modal-title,
+.donation-modal-label {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #3B005E;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.donation-modal input {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #D1C4E9;
+    border-radius: 5px;
+    background-color: #F3F0FF;
+    transition: border-color 0.3s ease;
+}
+
+.donation-modal input:hover {
+    border-color: #8672FF;
+}
+
+.donation-modal input:focus {
+    outline: none;
+    border-color: #3B005E;
+}
+
+.donation-modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.detalles_input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    font: inherit;
+    border: 2px solid #D1C4E9; /* Color de borde coherente con el estilo general */
+    background-color: #F3F0FF; /* Color de fondo definido en tu archivo de estilos */
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.detalles_input:hover {
+    border-color: #8672FF; /* Color de acento definido en el archivo de estilos */
+}
+
+.detalles_input:focus {
+    outline: none;
+    border-color: #3B005E; /* Color de enfoque para destacar el input activo */
+}
+
+.detalles_modal-buttons{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ------------------------------ MODAL DONACIONES ------------------------------ */
