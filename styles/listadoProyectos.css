@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
+
+@property --rotate {
+    syntax: "<angle>";
+    initial-value: 132deg;
+    inherits: false;
+}
+
+
 :root {
     --card-height: 300px;
     --card-width: 400px;
@@ -27,6 +35,7 @@
     max-height: 100vh;
     max-width: 100vw;
     flex-wrap: wrap;
+    z-index: -3;
 }
 
 #cards-container {
@@ -47,6 +56,7 @@
     padding: 20px;
     border-radius: 20px;
     overflow-x: hidden;
+    z-index: 0;
 }
 
 /* Scrollbar compatibility for multiple browsers */
@@ -87,29 +97,29 @@
 .card:hover {
     color: #FFF;
     transition: color 1s;
+    background-color: rgba(118, 111, 132,0.75);
 }
-
-.card:hover::before {
-    animation: spin 2.5s linear infinite;
-    opacity: 1;
-}
-
 .card::before {
     content: "";
     width: 104%;
     height: 104%;
     border-radius: 20px;
     background-image: linear-gradient(
-            132deg,
+            var(--rotate),
             #7600BC, #DA8EE7
     );
     position: absolute;
     z-index: -1;
     top: -2%;
     left: -2%;
-    animation: spin 2.5s linear infinite;
     opacity: 0;
-    transition: opacity 0.5s;
+    transition: opacity 0.5s ease;
+    animation: spin 2.5s linear infinite;
+}
+
+.card:hover::before {
+    opacity: 1;
+    animation: spin 2.5s linear infinite;
 }
 
 .card::after {
@@ -125,21 +135,28 @@
     transform: scale(0.8);
     filter: blur(calc(var(--card-height) / 6));
     background-image: linear-gradient(
-            132deg,
+            var(--rotate),
             #7600BC, #DA8EE7
     );
     opacity: 0;
-    transition: opacity 0.5s;
+    transition: opacity 0.5s ease;
+    animation: spin 2.5s linear infinite;
+}
+
+.card:hover::after {
+    opacity: 1;
+    animation: spin 2.5s linear infinite;
 }
 
 @keyframes spin {
     0% {
-        transform: rotate(0deg);
+        --rotate: 0deg;
     }
     100% {
-        transform: rotate(360deg);
+        --rotate: 360deg;
     }
 }
+
 
 .progress-bar {
     width: 100%;
