@@ -81,6 +81,23 @@ form label{
   font-size: 1.5rem;
   font-weight: 500;
 }
+
+/* clase con mayor ancho y letra más pequeña */
+.form-label-large {
+  flex-shrink: 0;
+  height: 50px;
+  width: 90px; /* Mayor ancho */
+  background-color: var(--accent-color);
+  fill: var(--base-color);
+  color: var(--base-color);
+  border-radius: 10px 0 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem; /* Letra más pequeña */
+  font-weight: 500;
+}
+
 form input{
   box-sizing: border-box;
   flex-grow: 1;

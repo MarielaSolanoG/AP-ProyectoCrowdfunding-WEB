@@ -55,10 +55,10 @@
     <!-- Edición de proyectos, inicialmente oculto -->
     <div id = "wrapper-edit-project" class="wrapper hidden">
       <h1>Edición de Proyectos</h1>
-      <p id="error-message-create"></p>
-      <form id="form-create-project">
+      <p id="error-message-edit-project"></p>
+      <form id="form-edit-project">
         <div>
-          <label for="projec-select"></label>
+          <label class="form-label-large" for="projec-select"></label>
           <select id="project-select" name="project-select">
               <option value="" disabled selected hidden>Seleccione el proyecto a editar</option>
               <option value="1">Proyecto 1</option>
@@ -67,20 +67,19 @@
           </select>
         </div>
         <div>
-          <label for="project-name-edit"></label>
-          <input type="text" name="project-name" id="project-name-edit" placeholder="Nombre del Proyecto">
+          <label class="form-label-large" for="project-name-edit">Nombre</label>
+          <input type="text" name="project-name" id="project-name-edit">
         </div>
         <div>
-          <label for="description"></label>
-          <input type="text" name="description" id="description-edit" placeholder="Descripción del Proyecto">
+          <label class="form-label-large" for="description">Descripción</label>
+          <input type="text" name="description" id="description-edit" >
         </div>
         <div>
-          <label for="objective"></label>
-          <input type="number" name="objective" id="objective-edit" placeholder="Objetivo de Financiación">
+          <label class="form-label-large" for="objective">Objetivo</label>
+          <input type="number" name="objective" id="objective-edit" >
         </div> 
-        <h2>Fecha límite de recaudación:</h2>
         <div>
-          <label for="date"></label>
+          <label class="form-label-large" for="date">Fecha límite</label>
           <input type="date" id="date-edit" name="date-input">
         </div>
         <div class="button-container">
