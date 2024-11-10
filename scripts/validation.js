@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Selección de formularios y elementos de entrada comunes
     const form = document.getElementById('form-signup') || document.getElementById('form-login');
     const formCreateProject = document.getElementById('form-create-project');
-    const formEditProject = document.getElementById('form-create-project');
+    const formEditProject = document.getElementById('form-edit-project');
     const formEditDataUser = document.getElementById('form-edit');
     
     /* USER */
@@ -20,9 +20,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const descriptionInput = document.getElementById('description-input');
     const objectiveInput = document.getElementById('objective-input');
     const dateInput = document.getElementById('date-input');
+    const projectNameEdit = document.getElementById('project-name-edit');
+    const descriptionEdit = document.getElementById('description-edit');
+    const objectiveEdit = document.getElementById('objective-edit');
+    const dateEdit = document.getElementById('date-edit');
     
     const errorMessage = document.getElementById('error-message');
     const errorMessageCreate = document.getElementById('error-message-create');
+    const errorMessageEditProject = document.getElementById('error-message-edit-project');
     const errorMessageEdit = document.getElementById('error-message-edit');
     
     // Verificar si el formulario está presente antes de agregar el eventListener
@@ -48,6 +53,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 errorMessage.innerText = errors.join(". ");
             }else{
                 form.submit()
+            }
+        });
+    }
+
+    // Verificar si el formulario de editar proyecto está presente antes de agregar el eventListener
+    if (formEditProject) {
+        formEditProject.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let errors = [];
+            errors = validateEditProject();
+            console.log('Edit Create Errors:', errors); // Depuración
+            if (errors.length > 0) {
+                errorMessageEditProject.classList.add('error-message');
+                errorMessageEditProject.innerText = errors.join(". ");
+            }else{
+                formEditProject.submit()
             }
         });
     }
@@ -152,7 +173,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const errors = [];
         errors.push(
             validateField(firstnameInput, 'Nombre es requerido'),
-            validateField(emailInput, 'Email es requerido'),
             validateField(identificationInput, 'Cédula es requerida'),
             validateField(telephoneInput, 'Teléfono es requerido'),
             validateField(walletInput, 'Billetera es requerida'),
@@ -175,9 +195,22 @@ document.addEventListener('DOMContentLoaded', function() {
         return errors.filter(error => error !== null);
     }
 
+    // Validación para el formulario de edición de proyecto
+    function validateEditProject() {
+        const errors = [];
+        errors.push(
+            validateField(projectNameEdit, 'Nombre es requerido'),
+            validateField(descriptionEdit, 'Descripción es requerido'),
+            validateField(objectiveEdit, 'Objetivo es requerido'),
+            validateField(dateEdit, 'Fecha es requerida'),
+        );
+
+        return errors.filter(error => error !== null);
+    }
+
     // Limpiar mensajes de error y clases incorrectas al modificar los campos
     const allInputs = [firstnameInput, emailInput, passwordInput, repeatPasswordInput, identificationInput, telephoneInput, walletInput, workAreaInput,
-        projectNameInput, descriptionInput, objectiveInput, dateInput]
+        projectNameInput, descriptionInput, objectiveInput, dateInput, projectNameEdit, descriptionEdit, objectiveEdit, dateEdit]
       .filter(input => input != null);
 
     allInputs.forEach(input => {
@@ -189,6 +222,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             if (errorMessageCreate) {
                 errorMessageCreate.innerText = '';
+            }
+            if (errorMessageEditProject) {
+                errorMessageEditProject.innerText = '';
             }
             if (errorMessageEdit) {
                 errorMessageEdit.innerText = '';
