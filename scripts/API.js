@@ -59,6 +59,31 @@ async function getProyectos(idUsuario) {
     return await apiRequest(url);
 }
 
+// Function to get all projects
+async function getProyectos() {
+    const url = `${baseUrl}/getProyectos`;
+
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("getProyectos successful:", data);
+        return data; // Return the data or handle it as needed
+    } catch (error) {
+        console.error("getProyectos failed:", error.message);
+        return null; // Return null in case of an error
+    }
+}
+
 // Get All Donaciones
 async function getDonaciones() {
     const url = `${baseUrl}/getDonaciones`;
