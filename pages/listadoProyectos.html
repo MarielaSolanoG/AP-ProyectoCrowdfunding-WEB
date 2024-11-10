@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html >
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -17,12 +17,30 @@
 
 <div style="width: 80%; display: flex; align-items: center; justify-content:center"><button class="btn donar-btn" style="margin-top: 20px;margin-bottom: 20px;" onclick="openModal()">Historial de Donaciones</button>
 </div>
-<!-- Modal -->
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <p>Modal en blanco</p>
+
+
+<!-- HTML actualizado con prefijo detalles_ -->
+<div id="detalles_modal" class="detalles_modal">
+  <div class="detalles_modal-content">
+    <h2 id="detalles_modal-title" class="detalles_ios-modal-title"></h2>
+    <p id="detalles_modal-description" class="detalles_ios-modal-description"></p>
+    <div class="progress-bar">
+      <div class="progress" id="detalles_modal-progress-bar"></div>
+      <span class="progress-text" id="detalles_modal-progress-text"></span>
+    </div>
+    <p class="detalles_ios-modal-label"><b>Fecha límite de recaudación:</b> <span id="detalles_modal-date"></span></p>
+    <p class="detalles_ios-modal-label"><b>Creador:</b> <span id="detalles_modal-creator"></span></p>
+    <p class="detalles_ios-modal-label"><b>Categoría:</b> <span id="detalles_modal-category"></span></p>
+    <p class="detalles_ios-modal-label"><b>Creado el:</b> <span id="detalles_modal-created-date"></span></p>
+    <p class="detalles_ios-modal-label"><b>Imagen:</b></p>
+    <div class="detalles_ios-image-container">
+      <img id="detalles_modal-image" src="" alt="Imagen del proyecto" class="detalles_ios-modal-image">
+    </div>
+    <button class="detalles_close-modal" onclick="detalles_closeModal()">Regresar</button>
   </div>
 </div>
+
+
 
 </body>
 </html>

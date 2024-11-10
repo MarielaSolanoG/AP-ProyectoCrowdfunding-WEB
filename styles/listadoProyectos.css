@@ -1,11 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-
-@property --rotate {
-    syntax: "<angle>";
-    initial-value: 132deg;
-    inherits: false;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root {
     --card-height: 300px;
@@ -16,7 +9,7 @@
     font-size: 3rem;
     font-weight: 900;
     text-transform: uppercase;
-    color:#3B005E;
+    color: #3B005E;
 }
 
 .navHeader_header-bar {
@@ -28,7 +21,7 @@
     background-color: #FFF;
     display: flex;
     justify-content: space-evenly;
-    align-content: stretch;
+    align-content: space-between;
     flex-direction: row;
     align-items: center;
     max-height: 100vh;
@@ -51,14 +44,14 @@
     flex-wrap: wrap;
     align-items: center;
     overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: #766F84 rgba(232, 226, 244, 0);
-    padding:20px;
+    padding: 20px;
     border-radius: 20px;
+    overflow-x: hidden;
 }
 
+/* Scrollbar compatibility for multiple browsers */
 #cards-container::-webkit-scrollbar {
-    width: 8px;
+    width: 0px;
     height: 8px;
 }
 
@@ -70,11 +63,11 @@
 #cards-container::-webkit-scrollbar-thumb {
     background-color: #766F84;
     border-radius: 10px;
-    border: 2px solid #E8E2F4;
+    border: 0px solid #E8E2F4;
 }
 
 .card {
-    color:#DBD6E6;
+    color: #DBD6E6;
     background-color: #766F84;
     width: var(--card-width);
     height: var(--card-height);
@@ -101,18 +94,13 @@
     opacity: 1;
 }
 
-.card:hover::after {
-    animation: none;
-    opacity: 1;
-}
-
 .card::before {
     content: "";
     width: 104%;
     height: 104%;
     border-radius: 20px;
     background-image: linear-gradient(
-            var(--rotate),
+            132deg,
             #7600BC, #DA8EE7
     );
     position: absolute;
@@ -137,7 +125,7 @@
     transform: scale(0.8);
     filter: blur(calc(var(--card-height) / 6));
     background-image: linear-gradient(
-            var(--rotate),
+            132deg,
             #7600BC, #DA8EE7
     );
     opacity: 0;
@@ -146,10 +134,10 @@
 
 @keyframes spin {
     0% {
-        --rotate: 0deg;
+        transform: rotate(0deg);
     }
     100% {
-        --rotate: 360deg;
+        transform: rotate(360deg);
     }
 }
 
@@ -236,15 +224,32 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.cardTitulo,
-.cardDescription {
+.cardTitulo {
+    margin-top: 0px;
 }
 
 .cardDescription {
-    overflow-y: hidden;
-    margin-top: 15px;
+    overflow-y: auto;
+    margin-top: 5px;
     margin-bottom: 15px;
     min-height: 50px;
+}
+
+/* Scrollbar compatibility for multiple browsers */
+.cardDescription::-webkit-scrollbar {
+    width: 0px;
+    height: 8px;
+}
+
+.cardDescription::-webkit-scrollbar-track {
+    background: #E8E2F4;
+    border-radius: 10px;
+}
+
+.cardDescription::-webkit-scrollbar-thumb {
+    background-color: #766F84;
+    border-radius: 10px;
+    border: 0px solid #E8E2F4;
 }
 
 .cardDueDate {
@@ -262,4 +267,181 @@
         --card-width: 300px;
     }
 }
+
+
+
+/* ------------------------------ MODAL ------------------------------ */
+/* CSS para el modal con prefijo detalles_ */
+
+.detalles_modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box; /* Asegura el comportamiento consistente del padding */
+}
+
+.detalles_modal-content {
+    background-color: #ffffff;
+    border-radius: 16px;
+    max-width: 600px;
+    width: 90%;
+    padding: 20px 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    font-family: 'Poppins', sans-serif;
+    animation: detalles_slide-up 0.3s ease-out;
+    box-sizing: border-box; /* Asegura el comportamiento consistente del padding */
+}
+
+@keyframes detalles_slide-up {
+    0% {
+        transform: translateY(20%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.detalles_ios-modal-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #3B005E;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.detalles_ios-modal-description {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.detalles_ios-modal-label {
+    font-size: 0.9rem;
+    color: #6B4200;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.detalles_ios-modal-label span {
+    color: #000;
+    font-weight: 400;
+}
+
+.detalles_progress-bar {
+    background-color: #D1C4E9;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 12px;
+    margin: 15px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.detalles_progress {
+    background-color: #FFC107;
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.detalles_ios-progress-text {
+    font-size: 0.9rem;
+    margin-top: 5px;
+    color: #6B4200;
+    font-weight: bold;
+    text-align: center;
+}
+
+.detalles_ios-image-container {
+    width: 100%;
+    height: 30dvh; /* Limita la altura del contenedor */
+    overflow-y: scroll; /* Asegura el scroll vertical */
+    border-radius: 12px;
+    margin-top: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    -webkit-overflow-scrolling: touch; /* Mejora el scroll en móviles */
+    position: relative;
+}
+
+.detalles_ios-modal-image {
+    width: 100%;
+    /*height: 100%;  */
+    object-fit: cover; /* Recorta la imagen si es mayor */
+    display: block;
+}
+
+
+
+/* Scrollbar compatibility for multiple browsers */
+.detalles_ios-image-container::-webkit-scrollbar {
+    width: 0px;
+    height: 8px;
+}
+
+.detalles_ios-image-container::-webkit-scrollbar-track {
+    background: #E8E2F4;
+    border-radius: 10px;
+}
+
+.detalles_ios-image-container::-webkit-scrollbar-thumb {
+    background-color: #766F84;
+    border-radius: 10px;
+    border: 0px solid #E8E2F4;
+}
+
+
+
+.detalles_close-modal {
+    display: block;
+    margin: 20px auto 0;
+    background-color: #e0e0e0;
+    color: #3B005E;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background-color 0.2s;
+    width: fit-content;
+    box-sizing: border-box;
+}
+
+.detalles_close-modal:hover {
+    background-color: #d1c4e9;
+}
+
+@media (max-width: 768px) {
+    .detalles_modal-content {
+        padding: 15px 20px;
+    }
+
+    .detalles_ios-modal-title {
+        font-size: 1.5rem;
+    }
+
+    .detalles_ios-modal-description,
+    .detalles_ios-modal-label,
+    .detalles_ios-progress-text {
+        font-size: 0.85rem;
+    }
+
+    .detalles_close-modal {
+        padding: 8px 16px;
+    }
+}
+
+
+
 
