@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const identificationInput = document.getElementById('identification-input');
     const telephoneInput = document.getElementById('telephone-input');
     const walletInput = document.getElementById('wallet-input');
-    const workAreaInput = document.getElementById('work-area-input');co
+    const workAreaInput = document.getElementById('work-area-input');
     const repeatPasswordInput = document.getElementById('repeat-password-input');
     
     /* PROJECT */
