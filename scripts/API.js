@@ -62,7 +62,7 @@ async function getCategorias() {
 }
 
 // Get Proyectos by User ID
-async function getProyectos(idUsuario) {
+async function getProyectosById(idUsuario) {
     const url = `${baseUrl}/getProyectos/${idUsuario}`;
     return await apiRequest(url);
 }
@@ -146,6 +146,12 @@ async function updateProyecto(idProyecto, nombreProyecto, descripcion, objetivoF
         categoria_id: categoriaId
     };
     return await apiRequest(url, 'PUT', data);
+}
+
+// Update Usuario
+async function updateUsuario(data) {
+    const url = `${baseUrl}/updateDatosUsuario`;
+    return await apiRequest(url, 'POST', data);
 }
 
 // Activate User Account

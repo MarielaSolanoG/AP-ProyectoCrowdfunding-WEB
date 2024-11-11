@@ -2,7 +2,8 @@
 async function populateProjectSelect() {
     const projectSelect = document.getElementById("project-select");
     try {
-        const proyectos = await getProyectos(sessionStorage.getItem('loggedInUserId')); // Llama a la API
+        const loggedInUserId = sessionStorage.getItem('loggedInUserId');
+        const proyectos = await getProyectosById(loggedInUserId); // Llama a la API
         proyectos.forEach(proyecto => {
             const option = document.createElement("option");
             option.value = proyecto.id;
@@ -20,33 +21,35 @@ function handleProjectSelection() {
 
     projectSelect.addEventListener("change", async function() {
         const projectId = projectSelect.value;
-        const proyectos = await getProyectos(sessionStorage.getItem('loggedInUserId')); // Llama a la API para obtener los proyectos
+        console.log("ID del proyecto seleccionado:", projectId);  // Verifica que el ID esté correcto
+        const proyectos = await getProyectosById(sessionStorage.getItem('loggedInUserId'));
         const proyectoSeleccionado = proyectos.find(proyecto => proyecto.id == projectId);
-
+    
         if (proyectoSeleccionado) {
+            console.log("Proyecto seleccionado:", proyectoSeleccionado);  // Verifica que el proyecto sea el correcto
             document.getElementById("project-name-edit").value = proyectoSeleccionado.nombre_proyecto;
             document.getElementById("description-edit").value = proyectoSeleccionado.descripcion;
             document.getElementById("objective-edit").value = proyectoSeleccionado.objetivo_financiacion;
             document.getElementById("date-edit").value = proyectoSeleccionado.fecha_limite.split('T')[0];
             document.getElementById("area-edit").value = proyectoSeleccionado.categoria_id;
+        } else {
+            console.error("No se encontró el proyecto seleccionado");
         }
     });
 }
 
 
 // Función que carga los datos del usuario logueado desde sessionStorage
-function loadLoggedInUser() {
-    const loggedInUserEmail = sessionStorage.getItem('loggedInUserEmail');
-
-    if (loggedInUserEmail) {
-        const user = Object.values(usersData).find(user => user.email === loggedInUserEmail);
+async function loadLoggedInUser() {
+    const loggedInUserId = sessionStorage.getItem('loggedInUserId');
+    if (loggedInUserId) {
+        const user = await getUsuarioById(loggedInUserId);
 
         if (user) {
-            document.getElementById("firstname-input").value = user.firstname;
-            document.getElementById("identification-input").value = user.identification;
-            document.getElementById("telephone-input").value = user.telephone;
-            document.getElementById("wallet-input").value = user.wallet;
-            document.getElementById("work-area").value = user.workArea;
+            document.getElementById("firstname-input").value = user.nombre_completo;
+            document.getElementById("telephone-input").value = user.telefono;
+            document.getElementById("wallet-input").value = user.cartera_digital;
+            document.getElementById("work-area-input").value = user.area_trabajo;
         }
     }
 }
@@ -74,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     handleFileUpload();
     populateProjectSelect(); // Poblar el selector de proyectos
     handleProjectSelection(); // Llamada para inicializar la selección del proyecto
-    //loadLoggedInUser();
+    loadLoggedInUser();
 });
 
 // Script en main_page_user.html para mostrar el formulario correcto
