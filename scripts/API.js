@@ -149,9 +149,9 @@ async function updateProyecto(idProyecto, nombreProyecto, descripcion, objetivoF
 }
 
 // Update Usuario
-async function updateUsuario(data) {
+async function updateDatosUsuario(data) {
     const url = `${baseUrl}/updateDatosUsuario`;
-    return await apiRequest(url, 'POST', data);
+    return await apiRequest(url, 'PUT', data);
 }
 
 // Activate User Account

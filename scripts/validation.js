@@ -191,7 +191,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     filePath = projectImagePath + file.name; 
                 }
 
-                alert("Ruta completa del archivo en el proyecto: " + filePath);
                 const projectData = {
                     id_usuario: loggedInUserId,  
                     nombre_proyecto: projectNameInput.value,
@@ -232,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Verificar si el formulario de editar datos está presente antes de agregar el eventListener
     if (formEditDataUser) {
-        formEditDataUser.addEventListener('submit', (e) => {
+        formEditDataUser.addEventListener('submit', async (e) => {
             e.preventDefault();
             let errors = [];
             errors = validateEditDataForm();
@@ -241,7 +240,37 @@ document.addEventListener('DOMContentLoaded', function() {
                 errorMessageEdit.classList.add('error-message');
                 errorMessageEdit.innerText = errors.join(". ");
             }else{
-                formEditDataUser.submit()
+                // Si no hay errores, preparar los datos del proyecto
+                const loggedInUserId = sessionStorage.getItem('loggedInUserId');
+                const userData = {
+                    id: loggedInUserId,  
+                    nombre_completo: firstnameInput.value,
+                    telefono: telephoneInput.value,
+                    //cartera_digital: walletInput.value,
+                    area_trabajo: workAreaInput.value
+                };
+                try {
+                    // Llamar a la función updateDatosUsuario para actualizar el proyecto
+                    const response = await updateDatosUsuario(userData);
+                    console.log(response); // Depuración para ver el contenido de response
+                    // Verificar si la respuesta es un texto
+                    if (typeof response === 'string') {
+                        alert(response); // Puede ser "Datos actualizados" o un error
+                        if (response === 'Datos actualizados') {
+                            formEditDataUser.reset(); // Limpia el formulario después de un envío exitoso
+                            loadLoggedInUser();
+                        }
+                    } else if (response && response.ok) {
+                        // Si la respuesta es un objeto y tiene la propiedad ok
+                        alert('Usuario actualizado con éxito');
+                        formEditDataUser.reset(); // Limpia el formulario después de un envío exitoso
+                    } else {
+                        // Si la respuesta no es lo esperado
+                        alert('Error desconocido al actualizar el proyecto');
+                    }
+                } catch (error) {
+                    alert('Error en la solicitud: ' + error.message);
+                }
             }
         });
     }
@@ -302,7 +331,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const errors = [];
         errors.push(
             validateField(firstnameInput, 'Nombre es requerido'),
-            validateField(identificationInput, 'Cédula es requerida'),
             validateField(telephoneInput, 'Teléfono es requerido'),
             validateField(walletInput, 'Billetera es requerida'),
             validateField(workAreaInput, 'Área de trabajo es requerido')
