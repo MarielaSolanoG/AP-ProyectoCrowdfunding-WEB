@@ -1,5 +1,3 @@
-// JavaScript equivalent code to interact with the APIs using Axios or Fetch
-
 const baseUrl = "https://backendproyap-production.up.railway.app";
 
 // Helper function to handle API requests
@@ -86,7 +84,7 @@ async function getProyectos() {
         }
 
         const data = await response.json();
-        console.log("getProyectos successful:", data);
+        //console.log("getProyectos successful:", data);
         return data; // Return the data or handle it as needed
     } catch (error) {
         console.error("getProyectos failed:", error.message);
@@ -171,5 +169,5 @@ async function desactivarCuentaUsuario(idUsuario) {
 // Example usage
 (async () => {
     const usuarios = await getUsuarios();
-    console.log('Usuarios:', usuarios);
+    //console.log('Usuarios:', usuarios);
 })();

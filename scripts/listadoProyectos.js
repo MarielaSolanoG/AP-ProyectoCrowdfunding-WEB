@@ -1,136 +1,103 @@
-const cardsData = [
-    {
-        id: 1,
-        titulo: "Plataforma Educativa de Realidad Virtual",
-        descripcion: "Una plataforma que permite a los estudiantes aprender usando simulaciones de realidad virtual.",
-        recaudado: 254516.0,
-        totalRecaudar: 500000.0,
-        fecha: "2025-12-01",
-        creacion: "2024-12-01",
-        imagenURL: "https://images.unsplash.com/photo-1522444195799-478538b28823?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        categoria: "Educación",
-        creadorNombre: "Juan Pérez"
-    },
-    {
-        id: 2,
-        titulo: "Laboratorio de Ciencias Interactivo",
-        descripcion: "Desarrollo de un laboratorio en el que los estudiantes pueden experimentar sin riesgos.",
-        recaudado: 135000.0,
-        totalRecaudar: 200000.0,
-        fecha: "2025-06-01",
-        creacion: "2024-06-01",
-        imagenURL: "https://images.unsplash.com/photo-1522444195799-478538b28823?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        categoria: "Ciencias",
-        creadorNombre: "Ana Gómez"
-    },
-    {
-        id: 3,
-        titulo: "Biblioteca Digital para Todos",
-        descripcion: "Acceso a una amplia gama de libros y recursos educativos en formato digital.",
-        recaudado: 78000.0,
-        totalRecaudar: 150000.0,
-        fecha: "2025-09-01",
-        creacion: "2024-09-01",
-        imagenURL: "https://images.unsplash.com/photo-1522444195799-478538b28823?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        categoria: "Educación",
-        creadorNombre: "Carlos Rodríguez"
-    },
-    {
-        id: 4,
-        titulo: "Aplicación de Aprendizaje de Idiomas con IA",
-        descripcion: "App que utiliza inteligencia artificial para personalizar el aprendizaje de idiomas basado en el ritmo del estudiante.",
-        recaudado: 95000.0,
-        totalRecaudar: 180000.0,
-        fecha: "2025-11-15",
-        creacion: "2024-11-15",
-        imagenURL: "https://images.unsplash.com/photo-1464146072230-91cabc968266?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        categoria: "Tecnología",
-        creadorNombre: "Laura Sánchez"
-    },
-    {
-        id: 5,
-        titulo: "Sistema de Tutoría Automatizada",
-        descripcion: "Un sistema que conecta a los estudiantes con tutores virtuales basados en inteligencia artificial para reforzar su aprendizaje.",
-        recaudado: 120000.0,
-        totalRecaudar: 250000.0,
-        fecha: "2025-08-01",
-        creacion: "2024-08-01",
-        imagenURL: "https://images.unsplash.com/photo-1464146072230-91cabc968266?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        categoria: "Educación",
-        creadorNombre: "María López"
-    },
-    {
-        id: 6,
-        titulo: "Jardín Botánico en Realidad Aumentada",
-        descripcion: "Una experiencia educativa donde los estudiantes pueden explorar plantas y ecosistemas en un entorno de realidad aumentada.",
-        recaudado: 60000.0,
-        totalRecaudar: 120000.0,
-        fecha: "2025-10-10",
-        creacion: "2024-10-10",
-        imagenURL: "https://images.unsplash.com/photo-1464146072230-91cabc968266?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        categoria: "Ciencias",
-        creadorNombre: "Felipe Martínez"
-    },
-    {
-        id: 7,
-        titulo: "Simulador de Historia Interactivo",
-        descripcion: "Plataforma que permite a los estudiantes sumergirse en eventos históricos y aprender de manera inmersiva.",
-        recaudado: 142000.0,
-        totalRecaudar: 300000.0,
-        fecha: "2025-07-20",
-        creacion: "2024-07-20",
-        imagenURL: "https://images.unsplash.com/photo-1464146072230-91cabc968266?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        categoria: "Historia",
-        creadorNombre: "José Pérez"
-    },
-    {
-        id: 8,
-        titulo: "Tutoría para Programación Colaborativa",
-        descripcion: "Herramienta en línea que facilita la programación en grupo y la tutoría entre pares para mejorar habilidades de codificación.",
-        recaudado: 110000.0,
-        totalRecaudar: 200000.0,
-        fecha: "2025-05-30",
-        creacion: "2024-05-30",
-        imagenURL: "https://images.unsplash.com/photo-1464146072230-91cabc968266?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        categoria: "Tecnología",
-        creadorNombre: "Raúl González"
-    },
-    {
-        id: 9,
-        titulo: "Portal de Noticias para Niños",
-        descripcion: "Un sitio web que presenta noticias y acontecimientos actuales de manera apropiada para niños, con contenido educativo.",
-        recaudado: 50000.0,
-        totalRecaudar: 100000.0,
-        fecha: "2025-09-15",
-        creacion: "2024-09-15",
-        imagenURL: "https://images.unsplash.com/photo-1522444195799-478538b28823?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        categoria: "Educación",
-        creadorNombre: "Sofía González"
-    },
-    {
-        id: 10,
-        titulo: "Curso de STEM para Zonas Rurales",
-        descripcion: "Programa educativo para llevar cursos de ciencia, tecnología, ingeniería y matemáticas a estudiantes de zonas rurales.",
-        recaudado: 180000.0,
-        totalRecaudar: 300000.0,
-        fecha: "2025-12-05",
-        creacion: "2024-12-05",
-        imagenURL: "https://images.unsplash.com/photo-1522444195799-478538b28823?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        categoria: "STEM",
-        creadorNombre: "Luis Pérez"
+let projectData = [];
+let usuario =[];
+
+// Load projects data on page load
+document.addEventListener("DOMContentLoaded", async function () {
+    try {
+        // Fetch all projects using getProyectos()
+        const proyectos = await getProyectos();
+
+        if (proyectos && Array.isArray(proyectos)) {
+            // Populate projectData with the fetched projects, converting strings to numbers
+            projectData = proyectos.map(proyecto => ({
+                id: proyecto.id,
+                titulo: proyecto.nombre_proyecto || 'Título no disponible',
+                descripcion: proyecto.descripcion || 'Descripción no disponible',
+                recaudado: proyecto.monto_recaudado ? Number(proyecto.monto_recaudado) : 0, // Convert to number and default to 0 if NaN
+                totalRecaudar: proyecto.objetivo_financiacion ? Number(proyecto.objetivo_financiacion) : 1, // Convert to number and default to 1 to avoid division by zero
+                fecha: proyecto.fecha_limite ? formatDate(proyecto.fecha_limite) : 'Fecha no disponible',
+                creacion: proyecto.fecha_creacion ? formatDate(proyecto.fecha_creacion) : 'Creación no disponible',
+                imagenURL: proyecto.imagenes_videos || 'https://via.placeholder.com/150',
+                categoriaID: proyecto.categoria_id,
+                categoria: proyecto.nombre_categoria,
+                creadorID: proyecto.id_usuario,
+                creadorNombre: null
+            }));
+
+            // Render the cards
+            const cardsContainer = document.getElementById("cards-container");
+            cardsContainer.innerHTML = ''; // Clear container before appending new data
+            projectData.forEach((card) => {
+                const progressPercentage = (card.recaudado / card.totalRecaudar) * 100;
+
+                const cardElement = document.createElement("div");
+                cardElement.classList.add("card");
+
+                cardElement.innerHTML = `
+                    <h2 class="cardTitulo">${card.titulo}</h2>
+                    <p class="cardDescription">${card.descripcion}</p>
+                    <div>
+                        <div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: ${progressPercentage}%"></div>
+                                <span class="progress-text">$${card.recaudado.toFixed(2)} de $${card.totalRecaudar.toFixed(2)}</span>
+                            </div>
+                            <p class="cardDueDate"><b>Fecha límite de recaudación:</b> ${card.fecha}</p>
+                        </div>
+                        <div>
+                            <button class="btn donar-btn" onclick='openDonationModal(${card.id})'>Donar</button>
+                            <button class="btn detalles-btn" onclick='detalles_openModal(${card.id})'>Detalles</button>
+                        </div>
+                    </div>
+                `;
+
+                cardsContainer.appendChild(cardElement);
+            });
+
+            // Add event listeners to donation buttons
+            createDonationButtons();
+            updateProjectData();
+        } else {
+            console.error("No projects found or response is not an array.");
+        }
+    } catch (error) {
+        console.error("Failed to load projects:", error);
     }
-];
+});
 
 
+async function updateProjectData() {
+    const usuarios = await getUsuarios();
+    let listUsuarios = [];
 
+    if (usuarios && Array.isArray(usuarios)) {
+        listUsuarios = usuarios.map(usuario => ({
+            id: usuario.id,
+            area_trabajo: usuario.area_trabajo,
+            cartera_digital: usuario.cartera_digital ? Number(usuario.cartera_digital) : 0,
+            estado: usuario.estado,
+            nombre_completo: usuario.nombre_completo,  // Correct property here
+            rol: usuario.rol,
+            telefono: usuario.telefono,
+            correo_electronico: usuario.correo_electronico,
+            fecha_registro: usuario.fecha_registro
+        }));
+    }
 
+    projectData.forEach(project => {
+        const user = listUsuarios.find(userTemp => userTemp.id === project.creadorID);
+        if (user) {
+            project.creadorNombre = user.nombre_completo; // Use nombre_completo here
+        }
+    });
+}
 
 
 // JS actualizado con prefijo detalles_ solo en el modal
 
 function detalles_openModal(id) {
     // Busca el proyecto por ID
-    const card = cardsData.find(card => card.id === id);
+    const card = projectData.find(card => card.id === id);
     if (!card) {
         console.error("Proyecto no encontrado");
         return;
@@ -157,51 +124,51 @@ function detalles_closeModal() {
 }
 
 // Modifica la parte de creación de botones solo para el botón de detalles
-document.addEventListener("DOMContentLoaded", function () {
-    const cardsContainer = document.getElementById("cards-container");
-
-    cardsData.forEach((card) => {
-        const cardElement = document.createElement("div");
-        cardElement.classList.add("card"); // Sin prefijo para la clase de la tarjeta
-
-        const progressPercentage = (card.recaudado / card.totalRecaudar) * 100;
-
-        cardElement.innerHTML = `
-            <h2 class="cardTitulo">${card.titulo}</h2>
-            <p class="cardDescription">${card.descripcion}</p>
-            <div>
-                <div >
-                    <div class="progress-bar">
-                        <div class="progress" style="width: ${progressPercentage}%"></div>
-                        <span class="progress-text">$${card.recaudado.toFixed(2)} de $${card.totalRecaudar.toFixed(2)}</span>
-                    </div>
-                    <p class="cardDueDate"><b>Fecha límite de recaudación:</b> ${card.fecha}</p>
-                </div>
-                <div >
-                    <button class="btn donar-btn" onclick='openDonationModal()'>Donar</button>
-                    <button class="btn detalles-btn" onclick='detalles_openModal(${card.id})'>Detalles</button>
-                </div>
-            </div>
-        `;
-
-        cardsContainer.appendChild(cardElement);
-    });
-
-    // Cierra el modal al hacer clic fuera de él
-    window.onclick = function (event) {
-        const modal = document.getElementById("detalles_modal");
-        if (event.target === modal) {
-            modal.style.display = "none";
-        }
-    };
-});
+// document.addEventListener("DOMContentLoaded", function () {
+//     const cardsContainer = document.getElementById("cards-container");
+//
+//     projectData.forEach((card) => {
+//         const cardElement = document.createElement("div");
+//         cardElement.classList.add("card"); // Sin prefijo para la clase de la tarjeta
+//
+//         const progressPercentage = (card.recaudado / card.totalRecaudar) * 100;
+//
+//         cardElement.innerHTML = `
+//             <h2 class="cardTitulo">${card.titulo}</h2>
+//             <p class="cardDescription">${card.descripcion}</p>
+//             <div>
+//                 <div >
+//                     <div class="progress-bar">
+//                         <div class="progress" style="width: ${progressPercentage}%"></div>
+//                         <span class="progress-text">$${card.recaudado.toFixed(2)} de $${card.totalRecaudar.toFixed(2)}</span>
+//                     </div>
+//                     <p class="cardDueDate"><b>Fecha límite de recaudación:</b> ${card.fecha}</p>
+//                 </div>
+//                 <div >
+//                     <button class="btn donar-btn" onclick='openDonationModal()'>Donar</button>
+//                     <button class="btn detalles-btn" onclick='detalles_openModal(${card.id})'>Detalles</button>
+//                 </div>
+//             </div>
+//         `;
+//
+//         cardsContainer.appendChild(cardElement);
+//     });
+//
+//     // Cierra el modal al hacer clic fuera de él
+//     window.onclick = function (event) {
+//         const modal = document.getElementById("detalles_modal");
+//         if (event.target === modal) {
+//             modal.style.display = "none";
+//         }
+//     };
+// });
 
 
 /* ------------------------------ MODAL DONACIONES ------------------------------ */
 // Función para abrir el modal de donaciones con detalles del proyecto
 function openDonationModal(id) {
     // Busca el proyecto por ID
-    const card = cardsData.find(card => card.id === id);
+    const card = projectData.find(card => card.id === id);
     if (!card) {
         console.error("Proyecto no encontrado");
         return;
@@ -232,12 +199,16 @@ function closeDonationModal() {
 function createDonationButtons() {
     document.querySelectorAll('.btn.donar-btn').forEach((button, index) => {
         button.addEventListener('click', () => {
-            openDonationModal(cardsData[index].id);
+            openDonationModal(projectData[index].id);
         });
     });
 }
 
-// Asegura que los listeners se añadan al cargar la página
-document.addEventListener("DOMContentLoaded", createDonationButtons);
-
 /* ------------------------------ MODAL DONACIONES ------------------------------ */
+
+
+function formatDate(isoDate) {
+    const date = new Date(isoDate);
+    const options = { day: '2-digit', month: 'long', year: 'numeric' };
+    return date.toLocaleDateString('es-ES', options); // Using Spanish locale for month names in Spanish
+}
