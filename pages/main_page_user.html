@@ -98,19 +98,21 @@
           <label class="form-label-large" for="date">Fecha límite</label>
           <input type="date" id="date-edit" name="date-input">
         </div>
-        <div class="button-container">
-          <!-- Botón para añadir imagen o video -->
-          <button id="upload-btn" class="upload-button" title="Añadir imagen o video">
-            <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
-              <path d="M480-480ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h320v80H200v560h560v-320h80v320q0 33-23.5 56.5T760-120H200Zm40-160h480L570-480 450-320l-90-120-120 160Zm440-320v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z"/>
-            </svg>
-            <input type="file" id="file-input" accept="image/*,video/*" style="display: none;">
-          </button>
-        
-          <!-- Botón de "Editar" -->
-          <button type="submit">Editar</button>
-        </div>
-        
+        <div>
+          <label class="form-label-large" for="area">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M160-120q-33 0-56.5-23.5T80-200v-440q0-33 23.5-56.5T160-720h160v-80q0-33 23.5-56.5T400-880h160q33 0 56.5 23.5T640-800v80h160q33 0 56.5 23.5T880-640v440q0 33-23.5 56.5T800-120H160Zm240-600h160v-80H400v80Z"/></svg>
+          </label>
+          <select id="area-edit" name="area">
+              <option value="" disabled selected hidden>Área</option>
+              <option value=1>Educación</option>
+              <option value=2>Salud</option>
+              <option value=3>Tecnología</option>
+              <option value=4>Medio Ambiente</option>
+              <option value=5>Deportes</option>
+          </select>
+          </div>
+        <!-- Botón de "Editar" -->
+        <button id="edit-project" type="button">Editar</button>
       </form>
     </div>
     <!-- Edición de datos de la cuenta -->

@@ -1,20 +1,38 @@
+// Llama a la API para obtener proyectos por usuario y llena el selector
+async function populateProjectSelect() {
+    const projectSelect = document.getElementById("project-select");
+    try {
+        const proyectos = await getProyectos(sessionStorage.getItem('loggedInUserId')); // Llama a la API
+        proyectos.forEach(proyecto => {
+            const option = document.createElement("option");
+            option.value = proyecto.id;
+            option.textContent = proyecto.nombre_proyecto;
+            projectSelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error("Error al obtener los proyectos:", error);
+    }
+}
 
 // Función que rellena el formulario al seleccionar un proyecto
 function handleProjectSelection() {
     const projectSelect = document.getElementById("project-select");
 
-    projectSelect.addEventListener("change", function() {
+    projectSelect.addEventListener("change", async function() {
         const projectId = projectSelect.value;
-        const project = projectsData[projectId];
-        console.log(project.name)
-        if (project) {
-            document.getElementById("project-name-edit").value = project.name;
-            document.getElementById("description-edit").value = project.description;
-            document.getElementById("objective-edit").value = project.objective;
-            document.getElementById("date-edit").value = project.date;
+        const proyectos = await getProyectos(sessionStorage.getItem('loggedInUserId')); // Llama a la API para obtener los proyectos
+        const proyectoSeleccionado = proyectos.find(proyecto => proyecto.id == projectId);
+
+        if (proyectoSeleccionado) {
+            document.getElementById("project-name-edit").value = proyectoSeleccionado.nombre_proyecto;
+            document.getElementById("description-edit").value = proyectoSeleccionado.descripcion;
+            document.getElementById("objective-edit").value = proyectoSeleccionado.objetivo_financiacion;
+            document.getElementById("date-edit").value = proyectoSeleccionado.fecha_limite.split('T')[0];
+            document.getElementById("area-edit").value = proyectoSeleccionado.categoria_id;
         }
     });
 }
+
 
 // Función que carga los datos del usuario logueado desde sessionStorage
 function loadLoggedInUser() {
@@ -54,6 +72,7 @@ function handleFileUpload() {
 // Inicialización de los eventos una vez que el DOM esté cargado
 document.addEventListener('DOMContentLoaded', () => {
     handleFileUpload();
+    populateProjectSelect(); // Poblar el selector de proyectos
     handleProjectSelection(); // Llamada para inicializar la selección del proyecto
     //loadLoggedInUser();
 });

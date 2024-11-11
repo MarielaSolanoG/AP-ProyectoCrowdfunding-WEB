@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const formCreateProject = document.getElementById('form-create-project');
     const formEditProject = document.getElementById('form-edit-project');
     const formEditDataUser = document.getElementById('form-edit');
-    const createProjectButton = document.getElementById('create-project'); // Selecciona el botón específico
+    const createProjectButton = document.getElementById('create-project'); 
+    const editProjectButton = document.getElementById('edit-project'); 
     
     /* USER */
     const emailInput = document.getElementById('email-input');
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const descriptionEdit = document.getElementById('description-edit');
     const objectiveEdit = document.getElementById('objective-edit');
     const dateEdit = document.getElementById('date-edit');
+    const areaEdit = document.getElementById('area-edit');
     
     const errorMessage = document.getElementById('error-message');
     const errorMessageCreate = document.getElementById('error-message-create');
@@ -125,8 +127,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Verificar si el formulario de editar proyecto está presente antes de agregar el eventListener
-    if (formEditProject) {
-        formEditProject.addEventListener('submit', (e) => {
+    if (formEditProject && editProjectButton) {
+        editProjectButton.addEventListener('click', async (e) => {
             e.preventDefault();
             let errors = [];
             errors = validateEditProject();
@@ -135,7 +137,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 errorMessageEditProject.classList.add('error-message');
                 errorMessageEditProject.innerText = errors.join(". ");
             }else{
-                formEditProject.submit()
+                try {
+                    const projectSelect = document.getElementById("project-select");
+                    // Llamar a la función updateProyecto para insertar el proyecto
+                    const response = await updateProyecto(projectSelect.value, projectNameEdit.value, descriptionEdit.value,
+                        objectiveEdit.value, dateEdit.value, areaEdit.value);
+                    console.log(response); // Depuración para ver el contenido de response
+                    // Verificar si la respuesta es un texto
+                    if (typeof response === 'string') {
+                        alert(response); // Puede ser "Proyecto actualizado" o un error
+                        if (response === 'Proyecto actualizado') {
+                            formEditProject.reset(); // Limpia el formulario después de un envío exitoso
+                            populateProjectSelect(); // Recarga los proyectos después de actualizar
+                        }
+                    } else if (response && response.ok) {
+                        // Si la respuesta es un objeto y tiene la propiedad ok
+                        alert('Proyecto actualizado con éxito');
+                        formEditProject.reset(); // Limpia el formulario después de un envío exitoso
+                    } else {
+                        // Si la respuesta no es lo esperado
+                        alert('Error desconocido al actualizar el proyecto');
+                    }
+                } catch (error) {
+                    alert('Error en la solicitud: ' + error.message);
+                }
             }
         });
     }
