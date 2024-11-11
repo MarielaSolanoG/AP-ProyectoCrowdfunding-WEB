@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const formCreateProject = document.getElementById('form-create-project');
     const formEditProject = document.getElementById('form-edit-project');
     const formEditDataUser = document.getElementById('form-edit');
+    const createProjectButton = document.getElementById('create-project'); // Selecciona el botón específico
     
     /* USER */
     const emailInput = document.getElementById('email-input');
@@ -21,6 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const objectiveInput = document.getElementById('objective-input');
     const dateInput = document.getElementById('date-input');
     const areaInput = document.getElementById('area');
+    // Captura el archivo seleccionado
+    const fileInput = document.getElementById('file-input');
     const projectNameEdit = document.getElementById('project-name-edit');
     const descriptionEdit = document.getElementById('description-edit');
     const objectiveEdit = document.getElementById('objective-edit');
@@ -137,15 +140,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Verificar si el formulario de crear proyecto está presente antes de agregar el eventListener
-    if (formCreateProject) {
-        formCreateProject.addEventListener('submit', async (e) => {
-            e.preventDefault();
+   
 
+    // Verificar si el formulario de crear proyecto y el botón están presentes antes de agregar el eventListener
+    if (formCreateProject && createProjectButton) {
+        createProjectButton.addEventListener('click', async (e) => {
+            e.preventDefault(); // Evita el comportamiento predeterminado del botón
+    
             // Realizar la validación del formulario
             let errors = validateCreateProject();
             console.log('Edit Create Errors:', errors); // Depuración
-
+    
             if (errors.length > 0) {
                 // Muestra los mensajes de error si hay algún problema en la validación
                 errorMessageCreate.classList.add('error-message');
@@ -153,15 +158,25 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 // Si no hay errores, preparar los datos del proyecto
                 const loggedInUserId = sessionStorage.getItem('loggedInUserId');
+                let filePath = "";
+
+                if (fileInput && fileInput.files.length > 0) {
+                    const file = fileInput.files[0];
+                    const projectImagePath = 'assets/images/'; 
+                    filePath = projectImagePath + file.name; 
+                }
+
+                alert("Ruta completa del archivo en el proyecto: " + filePath);
                 const projectData = {
                     id_usuario: loggedInUserId,  
                     nombre_proyecto: projectNameInput.value,
                     descripcion: descriptionInput.value,
                     objetivo_financiacion: objectiveInput.value,
                     fecha_limite: dateInput.value,
-                    categoria_id: areaInput.value
+                    categoria_id: areaInput.value, 
+                    imagenes_videos: filePath
                 };
-
+    
                 try {
                     // Llamar a la función insertProyecto para insertar el proyecto
                     const response = await insertProyecto(projectData);
@@ -184,11 +199,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 } catch (error) {
                     alert('Error en la solicitud: ' + error.message);
                 }
-                
             }
         });
     }
-
+    
 
 
     // Verificar si el formulario de editar datos está presente antes de agregar el eventListener

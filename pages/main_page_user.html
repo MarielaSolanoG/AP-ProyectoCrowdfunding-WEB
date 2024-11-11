@@ -43,7 +43,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M160-120q-33 0-56.5-23.5T80-200v-440q0-33 23.5-56.5T160-720h160v-80q0-33 23.5-56.5T400-880h160q33 0 56.5 23.5T640-800v80h160q33 0 56.5 23.5T880-640v440q0 33-23.5 56.5T800-120H160Zm240-600h160v-80H400v80Z"/></svg>
           </label>
           <select id="area" name="area">
-              <option value="" disabled selected hidden>Área de Trabajo</option>
+              <option value="" disabled selected hidden>Área</option>
               <option value=1>Educación</option>
               <option value=2>Salud</option>
               <option value=3>Tecnología</option>
@@ -53,7 +53,7 @@
         </div>
         <div class="button-container">
           <!-- Botón para añadir imagen o video -->
-          <button id="upload-btn" class="upload-button" title="Añadir imagen o video">
+          <button id="upload-btn" class="upload-button" type="button" title="Añadir imagen">
             <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
               <path d="M480-480ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h320v80H200v560h560v-320h80v320q0 33-23.5 56.5T760-120H200Zm40-160h480L570-480 450-320l-90-120-120 160Zm440-320v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z"/>
             </svg>
@@ -61,7 +61,7 @@
           </button>
         
           <!-- Botón de "Crear" -->
-          <button type="submit">Crear</button>
+          <button id="create-project" type="button">Crear</button>
         </div>
         
       </form>
