@@ -1,5 +1,6 @@
 let projectData = [];
 let usuario =[];
+let proyectoId=null; //ID of the open project
 
 // Load projects data on page load
 document.addEventListener("DOMContentLoaded", async function () {
@@ -32,9 +33,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
                 const cardElement = document.createElement("div");
                 cardElement.classList.add("card");
-
+                cardElement.setAttribute("data-id", card.id);
                 cardElement.innerHTML = `
-                    <h2 class="cardTitulo">${card.titulo}</h2>
+                    <h2 class="cardTitulo" >${card.titulo}</h2>
                     <p class="cardDescription">${card.descripcion}</p>
                     <div>
                         <div>
@@ -54,8 +55,6 @@ document.addEventListener("DOMContentLoaded", async function () {
                 cardsContainer.appendChild(cardElement);
             });
 
-            // Add event listeners to donation buttons
-            createDonationButtons();
             updateProjectData();
         } else {
             console.error("No projects found or response is not an array.");
@@ -99,7 +98,7 @@ async function updateProjectData() {
     }
     else {
         usuario = listUsuarios.find(userTemp => userTemp.correo_electronico === "wayne.b@estudiantec.cr");
-        console.log(usuario);
+        //console.log(usuario);
     }
 }
 
@@ -133,46 +132,6 @@ function detalles_closeModal() {
     document.getElementById("detalles_modal").style.display = "none";
 }
 
-// Modifica la parte de creación de botones solo para el botón de detalles
-// document.addEventListener("DOMContentLoaded", function () {
-//     const cardsContainer = document.getElementById("cards-container");
-//
-//     projectData.forEach((card) => {
-//         const cardElement = document.createElement("div");
-//         cardElement.classList.add("card"); // Sin prefijo para la clase de la tarjeta
-//
-//         const progressPercentage = (card.recaudado / card.totalRecaudar) * 100;
-//
-//         cardElement.innerHTML = `
-//             <h2 class="cardTitulo">${card.titulo}</h2>
-//             <p class="cardDescription">${card.descripcion}</p>
-//             <div>
-//                 <div >
-//                     <div class="progress-bar">
-//                         <div class="progress" style="width: ${progressPercentage}%"></div>
-//                         <span class="progress-text">$${card.recaudado.toFixed(2)} de $${card.totalRecaudar.toFixed(2)}</span>
-//                     </div>
-//                     <p class="cardDueDate"><b>Fecha límite de recaudación:</b> ${card.fecha}</p>
-//                 </div>
-//                 <div >
-//                     <button class="btn donar-btn" onclick='openDonationModal()'>Donar</button>
-//                     <button class="btn detalles-btn" onclick='detalles_openModal(${card.id})'>Detalles</button>
-//                 </div>
-//             </div>
-//         `;
-//
-//         cardsContainer.appendChild(cardElement);
-//     });
-//
-//     // Cierra el modal al hacer clic fuera de él
-//     window.onclick = function (event) {
-//         const modal = document.getElementById("detalles_modal");
-//         if (event.target === modal) {
-//             modal.style.display = "none";
-//         }
-//     };
-// });
-
 
 /* ------------------------------ MODAL DONACIONES ------------------------------ */
 // Función para abrir el modal de donaciones con detalles del proyecto
@@ -183,6 +142,10 @@ function openDonationModal(id) {
         console.error("Proyecto no encontrado");
         return;
     }
+
+
+    proyectoId=id;
+
 
     // Asigna los valores a los elementos del modal
     document.getElementById("donation-modal-title").textContent = `Donación para: ${card.titulo}`;
@@ -197,22 +160,124 @@ function openDonationModal(id) {
     document.getElementById("donation-modal-donorPhone").value = usuario.telefono;
     document.getElementById("donation-modal-donorFunds").value = `$${usuario.cartera_digital}`;
 
+    document.getElementById("donation-modal-donationAmount").value = 0;
+
     document.getElementById("donation-modal").style.display = "flex";
 }
 
 // Función para cerrar el modal
 function closeDonationModal() {
     document.getElementById("donation-modal").style.display = "none";
+    proyectoId=null;
 }
 
-// Agrega event listeners a los botones de donación
-function createDonationButtons() {
-    document.querySelectorAll('.btn.donar-btn').forEach((button, index) => {
-        button.addEventListener('click', () => {
-            openDonationModal(projectData[index].id);
-        });
-    });
+
+// Function to validate email
+function isValidEmail(email) {
+    return email.includes("@estudiantec.cr") && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
+
+// Function to validate phone
+function isValidPhone(phone) {
+    const pattern = /\(\+\d{3}\)\d{8}|\(\+\d{3}\)\d{4}-\d{4}|\+\d{3} \d{8}|\+\d{3} \d{4}-\d{4}|\d{8}|\d{4}-\d{4}|\+\d{10,11}|\+\d{7,10}-\d{4}/;
+    return pattern.test(phone);
+}
+
+// Function to validate and register donations
+async function procesarDonacion() {
+    const proyecto = projectData.find(proj => proj.id === proyectoId);
+
+    if (!proyecto) {
+        console.error("Proyecto no encontrado");
+        Swal.fire('Error', 'Proyecto no encontrado', 'error');
+        return;
+    }
+
+    const montoDonacion = parseFloat(document.getElementById('donation-modal-donationAmount').value);
+    const donorEmail = document.getElementById('donation-modal-donorEmail').value;
+    const donorPhone = document.getElementById('donation-modal-donorPhone').value;
+
+    if (!isValidEmail(donorEmail)) {
+        Swal.fire('Error', 'El correo electrónico es inválido', 'error');
+        return;
+    }
+
+    if (!isValidPhone(donorPhone)) {
+        Swal.fire('Error', 'El número de teléfono es inválido', 'error');
+        return;
+    }
+
+    if (isNaN(montoDonacion) || montoDonacion <= 0) {
+        Swal.fire('Error', 'Ingrese un monto de donación válido', 'error');
+        return;
+    }
+
+    try {
+        // Verificar si el usuario tiene fondos suficientes usando el API
+        const fondosSuficientes = await validarFondosSuficientes(usuario.id, montoDonacion);
+
+        if (!fondosSuficientes) {
+            Swal.fire('Fondos insuficientes', 'No tienes suficientes fondos para esta donación', 'error');
+            return;
+        }
+
+        // Registrar la donación usando el API
+        const resultadoDonacion = await insertDonacion(usuario.id, proyecto.id, montoDonacion);
+
+        if (!resultadoDonacion) {
+            throw new Error('Error al registrar la donación en el servidor.');
+        }
+
+        // Actualiza el monto en la cartera del usuario y la vista del proyecto
+        usuario.cartera_digital -= montoDonacion;
+        proyecto.recaudado += montoDonacion;
+        actualizarVistaProyecto(proyectoId);
+
+        // Mostrar mensaje de éxito
+        Swal.fire('Éxito', 'Tu donación ha sido procesada con éxito', 'success');
+
+    } catch (error) {
+        console.error('Error durante el procesamiento de la donación:', error);
+
+        // Revertir cambios si hubo un error al registrar la donación
+        usuario.cartera_digital += montoDonacion;
+        proyecto.recaudado -= montoDonacion;
+        actualizarVistaProyecto(proyectoId);
+
+        Swal.fire('Error', 'Hubo un problema al procesar tu donación. Inténtalo de nuevo más tarde.', 'error');
+    }
+}
+
+
+
+// Función para actualizar la vista de un proyecto
+function actualizarVistaProyecto(proyectoId) {
+    const proyecto = projectData.find(proj => proj.id === proyectoId);
+
+    if (proyecto) {
+        // Actualizar la barra de progreso en el modal de donación
+        const progressPercentage = (proyecto.recaudado / proyecto.totalRecaudar) * 100;
+        document.getElementById("donation-modal-progress").style.width = progressPercentage + '%';
+        document.getElementById("donation-modal-progress-text").textContent = `$${proyecto.recaudado.toFixed(2)} de $${proyecto.totalRecaudar.toFixed(2)}`;
+
+        // Actualizar la barra de progreso en la tarjeta del proyecto
+        const cardProgress = document.querySelector(`.card[data-id="${proyectoId}"] .progress-bar .progress`);
+        const cardProgressText = document.querySelector(`.card[data-id="${proyectoId}"] .progress-text`);
+        if (cardProgress && cardProgressText) {
+            cardProgress.style.width = progressPercentage + '%';
+            cardProgressText.textContent = `$${proyecto.recaudado.toFixed(2)} de $${proyecto.totalRecaudar.toFixed(2)}`;
+        }
+
+        // Actualizar los fondos disponibles del usuario en el modal
+        document.getElementById("donation-modal-donorFunds").value = `$${usuario.cartera_digital.toFixed(2)}`;
+
+        // Limpiar el campo de cantidad de donación
+        document.getElementById("donation-modal-donationAmount").value = '';
+    }
+}
+
+
+
 
 /* ------------------------------ MODAL DONACIONES ------------------------------ */
 
@@ -222,3 +287,8 @@ function formatDate(isoDate) {
     const options = { day: '2-digit', month: 'long', year: 'numeric' };
     return date.toLocaleDateString('es-ES', options); // Using Spanish locale for month names in Spanish
 }
+
+
+
+
+
