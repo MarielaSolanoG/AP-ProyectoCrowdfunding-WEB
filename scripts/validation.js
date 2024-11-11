@@ -246,8 +246,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     id: loggedInUserId,  
                     nombre_completo: firstnameInput.value,
                     telefono: telephoneInput.value,
-                    //cartera_digital: walletInput.value,
-                    area_trabajo: workAreaInput.value
+                    area_trabajo: workAreaInput.value,
+                    monto: walletInput.value
                 };
                 try {
                     // Llamar a la función updateDatosUsuario para actualizar el proyecto
