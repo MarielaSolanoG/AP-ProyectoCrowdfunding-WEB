@@ -18,7 +18,7 @@ function handleProjectSelection() {
 
 // Función que carga los datos del usuario logueado desde sessionStorage
 function loadLoggedInUser() {
-    const loggedInUserEmail = sessionStorage.getItem('loggedInUser');
+    const loggedInUserEmail = sessionStorage.getItem('loggedInUserEmail');
 
     if (loggedInUserEmail) {
         const user = Object.values(usersData).find(user => user.email === loggedInUserEmail);
@@ -55,7 +55,7 @@ function handleFileUpload() {
 document.addEventListener('DOMContentLoaded', () => {
     handleFileUpload();
     handleProjectSelection(); // Llamada para inicializar la selección del proyecto
-    loadLoggedInUser();
+    //loadLoggedInUser();
 });
 
 // Script en main_page_user.html para mostrar el formulario correcto

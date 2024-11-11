@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Verificar si el formulario está presente antes de agregar el eventListener
     if (form) {
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
             let errors = [];
 
@@ -40,13 +40,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 errors = validateSignupForm();
             } else if (form.id === 'form-login') {
                 errors = validateLoginForm();
-                // Redirigir si no hay errores
+                // si no hay errores
                 if (errors.length === 0) {
-                    const userEmail = emailInput.value;
-                    sessionStorage.setItem('loggedInUser', userEmail); // Guarda el correo electrónico del usuario en sessionStorage
-                    window.location.href = "main_page_user.html";
+                    try {
+                        // Llamar a la función login para validar el inicio de sesión
+                        const response = await login(emailInput.value, passwordInput.value);
+                        console.log(emailInput.value);
+                        console.log(passwordInput.value);
+                        // Verifica si la respuesta es un objeto JSON con los campos esperados
+                        if (response) {
+                            // Si el inicio de sesión es exitoso
+                            console.log("Inicio de sesión exitoso");
+
+                            const userId = response.id;
+                            const userEmail = response.correo_electronico;
+                            
+                            // Guarda el id y el correo electrónico en sessionStorage
+                            sessionStorage.setItem('loggedInUserId', userId);
+                            sessionStorage.setItem('loggedInUserEmail', userEmail);
+                            
+                            // Redirige al usuario a la página principal
+                            window.location.href = "main_page_user.html";
+                        } else {
+                            // Si la respuesta no tiene los datos esperados (id o correo_electronico)
+                            console.log('Correo electrónico o contraseña incorrectos');
+                        }
+                    } catch (error) {
+                        // Manejar errores de la solicitud
+                        console.log('Error al intentar iniciar sesión: ' + error.message);
+                    }
                     return;
                 }
+
             }
             if (errors.length > 0) {
                 errorMessage.classList.add('error-message');
@@ -189,18 +214,6 @@ document.addEventListener('DOMContentLoaded', function() {
             errors.push('La contraseña debe tener al menos 6 caracteres');
             passwordInput.parentElement.classList.add('incorrect');
         }
-        else {
-            // Buscar el usuario en `usersData`
-            const user = Object.values(usersData).find(user => user.email === emailInput.value);
-    
-            // Validar que el usuario exista y que la contraseña sea correcta
-            if (!user) {
-                errors.push("El usuario no existe.");
-            } else if (passwordInput.value !== user.password) { 
-                errors.push("Contraseña incorrecta.");
-            }
-        }
-    
         return errors.filter(error => error !== null);
     }
 
