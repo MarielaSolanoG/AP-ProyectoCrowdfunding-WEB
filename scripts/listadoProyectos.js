@@ -83,15 +83,25 @@ async function updateProjectData() {
             fecha_registro: usuario.fecha_registro
         }));
     }
-
+    //console.log(listUsuarios);
     projectData.forEach(project => {
         const user = listUsuarios.find(userTemp => userTemp.id === project.creadorID);
         if (user) {
             project.creadorNombre = user.nombre_completo; // Use nombre_completo here
         }
     });
-}
 
+    const loggedInUserEmail = sessionStorage.getItem('loggedInUser');
+
+    if (loggedInUserEmail) {
+        usuario = listUsuarios.find(userTemp => userTemp.correo_electronico === loggedInUserEmail);
+        //const user = Object.values(usersData).find(user => user.email === loggedInUserEmail);
+    }
+    else {
+        usuario = listUsuarios.find(userTemp => userTemp.correo_electronico === "wayne.b@estudiantec.cr");
+        console.log(usuario);
+    }
+}
 
 // JS actualizado con prefijo detalles_ solo en el modal
 
@@ -182,10 +192,10 @@ function openDonationModal(id) {
     document.getElementById("donation-modal-deadline").textContent = `Fecha límite: ${card.fecha}`;
 
     // Carga valores por defecto a los campos
-    document.getElementById("donation-modal-donorName").value = "Jerson Prendas";
-    document.getElementById("donation-modal-donorEmail").value = "jerson@estudaintec.cr";
-    document.getElementById("donation-modal-donorPhone").value = "85667799";
-    document.getElementById("donation-modal-donorFunds").value = "$100.00";
+    document.getElementById("donation-modal-donorName").value = usuario.nombre_completo;
+    document.getElementById("donation-modal-donorEmail").value = usuario.correo_electronico;
+    document.getElementById("donation-modal-donorPhone").value = usuario.telefono;
+    document.getElementById("donation-modal-donorFunds").value = `$${usuario.cartera_digital}`;
 
     document.getElementById("donation-modal").style.display = "flex";
 }
