@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (formCreateProject) {
         formCreateProject.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
             // Realizar la validación del formulario
             let errors = validateCreateProject();
             console.log('Edit Create Errors:', errors); // Depuración
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 errorMessageCreate.classList.add('error-message');
                 errorMessageCreate.innerText = errors.join(". ");
             } else {
-                // Si no hay errores, enviar el formulario a la API
+                // Si no hay errores, preparar los datos del proyecto
                 const projectData = {
                     id_usuario: 2,  
                     nombre_proyecto: projectNameInput.value,
@@ -98,20 +98,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 };
 
                 try {
-                    const response = await fetch('https://backendproyap-production.up.railway.app/insertProyecto', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(projectData)
-                    });
-
-                    if (response.ok) {
+                    // Llamar a la función insertProyecto para insertar el proyecto
+                    const response = await insertProyecto(projectData);
+    
+                    // Verificar si la respuesta es un texto
+                    if (typeof response === 'string') {
+                        // Si es un mensaje de texto, se muestra
+                        alert(response); // Puede ser "Proyecto insertado" o un error
+                        if (response === 'Proyecto insertado') {
+                            formCreateProject.reset(); // Limpia el formulario después de un envío exitoso
+                        }
+                    } else if (response.ok) {
+                        // Si la respuesta es un objeto y la propiedad ok existe
                         alert('Proyecto insertado con éxito');
-                        formCreateProject.reset(); // limpia el formulario después de un envío exitoso
+                        formCreateProject.reset(); // Limpia el formulario después de un envío exitoso
                     } else {
-                        const errorText = await response.text();
-                        alert('Error al insertar proyecto: ' + errorText);
+                        // En caso de que la respuesta no sea lo esperado
+                        alert('Error desconocido al insertar el proyecto');
                     }
                 } catch (error) {
                     alert('Error en la solicitud: ' + error.message);
@@ -119,6 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
 
 
     // Verificar si el formulario de editar datos está presente antes de agregar el eventListener

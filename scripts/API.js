@@ -10,13 +10,23 @@ async function apiRequest(url, method = 'GET', body = null, headers = { 'Content
             headers: headers,
             body: body ? JSON.stringify(body) : null
         });
+
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-        return await response.json();
+
+        // Verificar si la respuesta es JSON
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+            return await response.json();
+        } else {
+            // Si no es JSON, devolver el texto plano
+            return await response.text();
+        }
     } catch (error) {
         console.error('API request failed:', error);
         return null;
     }
 }
+
 
 // Get RolUsuarios
 async function getRolUsuarios() {
