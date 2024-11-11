@@ -49,7 +49,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         area_trabajo: workAreaInput.value,
                         cartera_digital: walletInput.value,
                         telefono: telephoneInput.value,
-                        contrasena: passwordInput.value
+                        contrasena: passwordInput.value,
+                        rol: 2
                     };
                     try {
                         // Llamar a la función insertUsuario para insertar el usuario
@@ -58,7 +59,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         // Verificar si la respuesta es un texto
                         if (typeof response === 'string') {
                             // Si es un mensaje de texto, se muestra
-                            alert(response); // Puede ser "Usuario insertado" o un error
+                            alert(response); // Puede ser "Usuario insertado" o un error}
+                            console.log(response);
                             if (response === 'Usuario insertado') {
                                 form.reset(); // Limpia el formulario después de un envío exitoso
                             }
