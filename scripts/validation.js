@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const descriptionInput = document.getElementById('description-input');
     const objectiveInput = document.getElementById('objective-input');
     const dateInput = document.getElementById('date-input');
+    const areaInput = document.getElementById('area');
     const projectNameEdit = document.getElementById('project-name-edit');
     const descriptionEdit = document.getElementById('description-edit');
     const objectiveEdit = document.getElementById('objective-edit');
@@ -88,9 +89,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             // Si el inicio de sesión es exitoso
                             console.log("Inicio de sesión exitoso");
 
-                            const userId = response.id;
-                            const userEmail = response.correo_electronico;
-                            
+                            const userId = response[0].id;
+                            const userEmail = response[0].correo_electronico;
                             // Guarda el id y el correo electrónico en sessionStorage
                             sessionStorage.setItem('loggedInUserId', userId);
                             sessionStorage.setItem('loggedInUserEmail', userEmail);
@@ -150,37 +150,39 @@ document.addEventListener('DOMContentLoaded', function() {
                 errorMessageCreate.innerText = errors.join(". ");
             } else {
                 // Si no hay errores, preparar los datos del proyecto
+                const loggedInUserId = sessionStorage.getItem('loggedInUserId');
                 const projectData = {
-                    id_usuario: 2,  
+                    id_usuario: loggedInUserId,  
                     nombre_proyecto: projectNameInput.value,
                     descripcion: descriptionInput.value,
                     objetivo_financiacion: objectiveInput.value,
                     fecha_limite: dateInput.value,
-                    categoria_id: 1
+                    categoria_id: areaInput.value
                 };
 
                 try {
                     // Llamar a la función insertProyecto para insertar el proyecto
                     const response = await insertProyecto(projectData);
-    
+                    console.log(response); // Depuración para ver el contenido de response
+                
                     // Verificar si la respuesta es un texto
                     if (typeof response === 'string') {
-                        // Si es un mensaje de texto, se muestra
                         alert(response); // Puede ser "Proyecto insertado" o un error
                         if (response === 'Proyecto insertado') {
                             formCreateProject.reset(); // Limpia el formulario después de un envío exitoso
                         }
-                    } else if (response.ok) {
-                        // Si la respuesta es un objeto y la propiedad ok existe
+                    } else if (response && response.ok) {
+                        // Si la respuesta es un objeto y tiene la propiedad ok
                         alert('Proyecto insertado con éxito');
                         formCreateProject.reset(); // Limpia el formulario después de un envío exitoso
                     } else {
-                        // En caso de que la respuesta no sea lo esperado
+                        // Si la respuesta no es lo esperado
                         alert('Error desconocido al insertar el proyecto');
                     }
                 } catch (error) {
                     alert('Error en la solicitud: ' + error.message);
                 }
+                
             }
         });
     }
