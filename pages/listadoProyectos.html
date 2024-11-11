@@ -6,6 +6,7 @@
   <title>Listado de Proyectos</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
   <link rel="stylesheet" href="/styles/listadoProyectos.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="../scripts/API.js"></script>
   <script src="/scripts/listadoProyectos.js"></script>
   <script src="../scripts/navigationHeader.js"></script>
@@ -72,7 +73,7 @@
       <input type="number" id="donation-modal-donationAmount" class="detalles_input" name="donationAmount" min="1" required>
 
       <div class="detalles_modal-buttons">
-        <button type="submit" class="btn donar-btn">DONAR</button>
+        <button type="button" class="btn donar-btn" onclick="procesarDonacion()">DONAR</button>
         <button type="button" class="btn detalles-btn" onclick="closeDonationModal()">CANCELAR</button>
       </div>
     </form>
