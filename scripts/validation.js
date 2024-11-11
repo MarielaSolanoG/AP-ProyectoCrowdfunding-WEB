@@ -38,6 +38,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (form.id === 'form-signup') {
                 errors = validateSignupForm();
+                // si no hay errores
+                if (errors.length === 0) {
+                    // Si no hay errores, preparar los datos del usuario
+                    const userData = {
+                        nombre_completo: firstnameInput.value,  
+                        cedula: identificationInput.value,
+                        correo_electronico: emailInput.value,
+                        area_trabajo: workAreaInput.value,
+                        cartera_digital: walletInput.value,
+                        telefono: telephoneInput.value,
+                        contrasena: passwordInput.value
+                    };
+                    try {
+                        // Llamar a la función insertUsuario para insertar el usuario
+                        const response = await insertUsuario(userData);
+        
+                        // Verificar si la respuesta es un texto
+                        if (typeof response === 'string') {
+                            // Si es un mensaje de texto, se muestra
+                            alert(response); // Puede ser "Usuario insertado" o un error
+                            if (response === 'Usuario insertado') {
+                                form.reset(); // Limpia el formulario después de un envío exitoso
+                            }
+                        } else if (response.ok) {
+                            // Si la respuesta es un objeto y la propiedad ok existe
+                            alert('Proyecto insertado con éxito');
+                            formCreateProject.reset(); // Limpia el formulario después de un envío exitoso
+                        } else {
+                            // En caso de que la respuesta no sea lo esperado
+                            alert('Error desconocido al insertar el proyecto');
+                        }
+                    } catch (error) {
+                        alert('Error en la solicitud: ' + error.message);
+                    }
+                }
+                
             } else if (form.id === 'form-login') {
                 errors = validateLoginForm();
                 // si no hay errores
@@ -47,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         const response = await login(emailInput.value, passwordInput.value);
                         console.log(emailInput.value);
                         console.log(passwordInput.value);
-                        // Verifica si la respuesta es un objeto JSON con los campos esperados
+                        // Verifica la respuesta
                         if (response) {
                             // Si el inicio de sesión es exitoso
                             console.log("Inicio de sesión exitoso");
@@ -63,7 +99,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             window.location.href = "main_page_user.html";
                         } else {
                             // Si la respuesta no tiene los datos esperados (id o correo_electronico)
-                            console.log('Correo electrónico o contraseña incorrectos');
+                            errorMessage.classList.add('error-message');
+                            errorMessage.innerText = "Correo electrónico o contraseña incorrectos";
                         }
                     } catch (error) {
                         // Manejar errores de la solicitud
