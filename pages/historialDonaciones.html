@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Donaciones</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="/styles/listadoProyectos.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/scripts/API.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+    <script src="../scripts/navigationHeader.js"></script>
+    <script src="../scripts/historialDonaciones.js"></script>
+</head>
+<body class="listado-body">
+<div style="width: 100%; display: flex; align-items: center; justify-content: center">
+    <h1 class="listado-h1">Historial de Donaciones</h1>
+</div>
+
+<div id="table-container" style="width: 90%; margin: auto;">
+    <table id="donations-table" class="display" style="width: 100%; background-color: #E8E2F4; border-radius: 10px;">
+        <thead>
+        <tr>
+            <th>Proyecto</th>
+            <th>Monto</th>
+            <th>Fecha</th>
+        </tr>
+        </thead>
+        <tbody id="donations-body">
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>

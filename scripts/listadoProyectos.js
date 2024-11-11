@@ -2,14 +2,16 @@ let projectData = [];
 let usuario =[];
 let proyectoId=null; //ID of the open project
 
-// Load projects data on page load
+
+/**
+ * Loads all projects in cards
+ */
 document.addEventListener("DOMContentLoaded", async function () {
     try {
         // Fetch all projects using getProyectos()
         const proyectos = await getProyectos();
 
         if (proyectos && Array.isArray(proyectos)) {
-            // Populate projectData with the fetched projects, converting strings to numbers
             projectData = proyectos.map(proyecto => ({
                 id: proyecto.id,
                 titulo: proyecto.nombre_proyecto || 'Título no disponible',
@@ -25,7 +27,6 @@ document.addEventListener("DOMContentLoaded", async function () {
                 creadorNombre: null
             }));
 
-            // Render the cards
             const cardsContainer = document.getElementById("cards-container");
             cardsContainer.innerHTML = ''; // Clear container before appending new data
             projectData.forEach((card) => {
@@ -64,7 +65,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 });
 
-
+/**
+ * Updates missing details for Details Modal
+ * @returns {Promise<void>}
+ */
 async function updateProjectData() {
     const usuarios = await getUsuarios();
     let listUsuarios = [];
@@ -102,8 +106,10 @@ async function updateProjectData() {
     }
 }
 
-// JS actualizado con prefijo detalles_ solo en el modal
-
+/**
+ * Opens the Details Modal
+ * @param id
+ */
 function detalles_openModal(id) {
     // Busca el proyecto por ID
     const card = projectData.find(card => card.id === id);
@@ -135,6 +141,10 @@ function detalles_closeModal() {
 
 /* ------------------------------ MODAL DONACIONES ------------------------------ */
 // Función para abrir el modal de donaciones con detalles del proyecto
+/**
+ * Opens the donations modals
+ * @param id
+ */
 function openDonationModal(id) {
     // Busca el proyecto por ID
     const card = projectData.find(card => card.id === id);
@@ -165,24 +175,42 @@ function openDonationModal(id) {
     document.getElementById("donation-modal").style.display = "flex";
 }
 
+/**
+ * Closes donations modal
+ */
 // Función para cerrar el modal
 function closeDonationModal() {
     document.getElementById("donation-modal").style.display = "none";
     proyectoId=null;
 }
 
-
+/**
+ * Validates phone for Donation
+ * @param email
+ * @returns {*|boolean}
+ */
 // Function to validate email
 function isValidEmail(email) {
     return email.includes("@estudiantec.cr") && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+
+/**
+ * Validates phone for Donation
+ * @param phone
+ * @returns {boolean}
+ */
 // Function to validate phone
 function isValidPhone(phone) {
     const pattern = /\(\+\d{3}\)\d{8}|\(\+\d{3}\)\d{4}-\d{4}|\+\d{3} \d{8}|\+\d{3} \d{4}-\d{4}|\d{8}|\d{4}-\d{4}|\+\d{10,11}|\+\d{7,10}-\d{4}/;
     return pattern.test(phone);
 }
 
+
+/**
+ * Verifies all donation values and inserts into the DB using the API
+ * @returns {Promise<void>}
+ */
 // Function to validate and register donations
 async function procesarDonacion() {
     const proyecto = projectData.find(proj => proj.id === proyectoId);
@@ -249,7 +277,10 @@ async function procesarDonacion() {
 }
 
 
-
+/**
+ * Updates all the UI based on Donations
+ * @param proyectoId
+ */
 // Función para actualizar la vista de un proyecto
 function actualizarVistaProyecto(proyectoId) {
     const proyecto = projectData.find(proj => proj.id === proyectoId);
@@ -281,7 +312,11 @@ function actualizarVistaProyecto(proyectoId) {
 
 /* ------------------------------ MODAL DONACIONES ------------------------------ */
 
-
+/**
+ * Gives DD/MM/YYYY format to dates
+ * @param isoDate
+ * @returns {string}
+ */
 function formatDate(isoDate) {
     const date = new Date(isoDate);
     const options = { day: '2-digit', month: 'long', year: 'numeric' };
