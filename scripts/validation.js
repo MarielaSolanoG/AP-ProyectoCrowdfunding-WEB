@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // si no hay errores
                 if (errors.length === 0) {
                     // Si no hay errores, preparar los datos del usuario
+                    let cuenta_mentor= document.getElementById('mentor-account-checkbox').checked // New checkbox boolean value
                     const userData = {
                         nombre_completo: firstnameInput.value,  
                         cedula: identificationInput.value,
@@ -55,7 +56,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         cartera_digital: walletInput.value,
                         telefono: telephoneInput.value,
                         contrasena: passwordInput.value,
-                        rol: 2
+                        rol: cuenta_mentor?3:2
+
                     };
                     try {
                         // Llamar a la función insertUsuario para insertar el usuario
