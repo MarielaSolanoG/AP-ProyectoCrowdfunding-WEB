@@ -84,26 +84,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 
             } else if (form.id === 'form-login') {
                 errors = validateLoginForm();
-                // si no hay errores
+            
+                // Si no hay errores en la validación del formulario
                 if (errors.length === 0) {
                     try {
                         // Llamar a la función login para validar el inicio de sesión
                         const response = await login(emailInput.value, passwordInput.value);
+                        
                         console.log(emailInput.value);
                         console.log(passwordInput.value);
-                        // Verifica la respuesta
+                        
+                        // Verifica la respuesta del backend
                         if (response) {
-                            // Si el inicio de sesión es exitoso
                             console.log("Inicio de sesión exitoso");
-
+            
                             const userId = response[0].id;
                             const userEmail = response[0].correo_electronico;
+            
                             // Guarda el id y el correo electrónico en sessionStorage
                             sessionStorage.setItem('loggedInUserId', userId);
                             sessionStorage.setItem('loggedInUserEmail', userEmail);
                             
-                            // Redirige al usuario a la página principal
-                            window.location.href = "main_page_user.html";
+                            // Verifica si el usuario tiene el correo específico para el acceso de admin
+                            if (userEmail === "prueba@estudiantec.cr") {
+                                // Redirige a la página de administración
+                                window.location.href = "main_page_adm.html";
+                            } else {
+                                // Redirige a la página normal de usuario
+                                window.location.href = "main_page_user.html";
+                            }
                         } else {
                             // Si la respuesta no tiene los datos esperados (id o correo_electronico)
                             errorMessage.classList.add('error-message');
@@ -111,12 +120,12 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     } catch (error) {
                         // Manejar errores de la solicitud
-                        console.log('Error al intentar iniciar sesión: ' + error.message);
+                        console.error('Error al intentar iniciar sesión:', error.message);
                     }
                     return;
                 }
-
             }
+            
             if (errors.length > 0) {
                 errorMessage.classList.add('error-message');
                 errorMessage.innerText = errors.join(". ");

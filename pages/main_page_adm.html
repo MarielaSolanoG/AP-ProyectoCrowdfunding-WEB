@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración - AIWoodWorks</title>
+    <link rel="stylesheet" href="/styles/style.css">
+    <script src="../scripts/navigationHeader.js"></script>
+</head>
+<body>
+    <!-- El header se genera automáticamente con navigationHeader.js -->
+
+    <!-- Contenido principal -->
+    <div class="wrapper">
+        <h1>Panel de Administración</h1>
+        <div class="button-container">
+            <button id="adm_ver_proyecto_btn" class="adm-button">Ver Proyectos</button>
+            <button id="adm_ver_donaciones_btn" class="adm-button">Ver Donaciones</button>
+            <button id="adm_gestionar_usuarios_btn" class="adm-button">Gestionar Usuarios</button>
+            <button id="adm_estadisticas_btn" class="adm-button">Estadísticas</button>
+        </div>
+    </div>
+
+    <script>
+        // Manejadores de eventos para los botones
+        document.getElementById("adm_ver_proyecto_btn").addEventListener("click", function() {
+            window.location.href = "admVerProyectos.html";
+        });
+
+        document.getElementById("adm_ver_donaciones_btn").addEventListener("click", function() {
+            window.location.href = "admVerDonaciones.html";
+        });
+
+        document.getElementById("adm_gestionar_usuarios_btn").addEventListener("click", function() {
+            window.location.href = "admGestionarUsuarios.html";
+        });
+
+        document.getElementById("adm_estadisticas_btn").addEventListener("click", function() {
+            window.location.href = "admVerEstadistica.html";
+        });
+
+    </script>
+</body>
+</html>

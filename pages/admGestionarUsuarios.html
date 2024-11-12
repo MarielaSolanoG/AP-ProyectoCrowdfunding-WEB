@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración - Gestionar Usuarios</title>
+    <link rel="stylesheet" href="/styles/style.css">
+    <script src="../scripts/navigationHeader.js" defer></script>
+</head>
+<body>
+    <!-- Header generado automáticamente -->
+    <div id="header-container"></div>
+
+    <div class="wrapper">
+        <h1>Gestión de Usuarios</h1>
+        <div id="error-message" class="error-message hidden"></div>
+
+        <!-- Campo de búsqueda -->
+        <input type="text" id="search-input" class="search-input" placeholder="Buscar por nombre de usuario...">
+
+        <!-- Contenedor para la lista de usuarios -->
+        <div class="table-container">
+            <table id="users-table" class="table-layout">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Estado</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="users-tbody"></tbody>
+            </table>
+        </div>
+
+        <button id="return_btn" class="return-button">Regresar</button>
+    </div>
+
+    <script src="../scripts/admGestionarUsuarios.js" defer></script>
+</body>
+</html>

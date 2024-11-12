@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración - Ver Donaciones</title>
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+    <script src="../scripts/navigationHeader.js" defer></script>
+</head>
+<body>
+    <!-- Header generado automáticamente -->
+    <div id="header-container"></div>
+
+    <div class="wrapper">
+        <h1>Listado de Donaciones</h1>
+        <div id="error-message" class="error-message hidden"></div>
+
+        <!-- Campo de búsqueda -->
+
+        <!-- Contenedor para la tabla con scroll -->
+        <div class="table-container">
+            <table id="donations-table" class="table-layout">
+                <thead>
+                    <tr>
+                        <th>Donante</th>
+                        <th>Proyecto</th>
+                        <th>Monto Donado</th>
+                    </tr>
+                </thead>
+                <tbody id="donations-tbody"></tbody>
+            </table>
+        </div>
+
+        <button id="return_btn" class="return-button">Regresar</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="../scripts/admVerDonaciones.js" defer></script>
+</body>
+</html>
