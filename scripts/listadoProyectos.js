@@ -94,7 +94,7 @@ async function updateProjectData() {
         }
     });
 
-    const loggedInUserEmail = sessionStorage.getItem('loggedInUser');
+    const loggedInUserEmail = sessionStorage.getItem('loggedInUserEmail');
 
     if (loggedInUserEmail) {
         usuario = listUsuarios.find(userTemp => userTemp.correo_electronico === loggedInUserEmail);
