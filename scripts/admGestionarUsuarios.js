@@ -54,6 +54,37 @@ async function cambiarEstadoUsuario(usuario) {
     }
 }
 
+// Función para hacer mentor o quitar mentor a un usuario
+async function cambiarMentorUsuario(usuario) {
+    const endpoint = usuario.es_mentor === 1 
+        ? `${baseUrl}/quitarMentorUsuario` 
+        : `${baseUrl}/updateMentorUsuario`;
+
+    const nuevoEstado = usuario.es_mentor === 1 ? 0 : 1;
+
+    try {
+        const response = await fetch(endpoint, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id_usuario: usuario.id })
+        });
+
+        if (response.ok) {
+            usuario.es_mentor = nuevoEstado;
+            actualizarTabla();
+        } else {
+            const errorText = await response.text();
+            console.error('Error al cambiar el estado del usuario:', errorText);
+            alert('Error al cambiar el estado del usuario.');
+        }
+    } catch (error) {
+        console.error('Error en la solicitud:', error);
+        alert('Error al cambiar el estado del usuario.');
+    }
+}
+
 // Función para actualizar la tabla de usuarios
 function actualizarTabla(filteredUsers = usuarios) {
     tableBody.innerHTML = '';
@@ -90,9 +121,7 @@ function actualizarTabla(filteredUsers = usuarios) {
         const mentorButton = document.createElement('button');
         mentorButton.textContent = 'Cambiar Mentor';
         mentorButton.classList.add('mentor-button');
-        mentorButton.addEventListener('click', () => {
-            // agregar la cuestión
-        });
+        mentorButton.addEventListener('click', () => cambiarMentorUsuario(usuario));
         mentorCell.appendChild(mentorButton);
         row.appendChild(mentorCell);
 
