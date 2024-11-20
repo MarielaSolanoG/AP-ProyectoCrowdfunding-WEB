@@ -85,6 +85,17 @@ function actualizarTabla(filteredUsers = usuarios) {
         actionCell.appendChild(actionButton);
         row.appendChild(actionCell);
 
+        // Columna de mentor
+        const mentorCell = document.createElement('td');
+        const mentorButton = document.createElement('button');
+        mentorButton.textContent = 'Cambiar Mentor';
+        mentorButton.classList.add('mentor-button');
+        mentorButton.addEventListener('click', () => {
+            // agregar la cuestión
+        });
+        mentorCell.appendChild(mentorButton);
+        row.appendChild(mentorCell);
+
         tableBody.appendChild(row);
     });
 }

@@ -613,3 +613,74 @@ form div.incorrect input{
   outline: none;
   background-color: #5a4bb2;
 }
+
+/* Botón para acciones adicionales como 'Cambiar Mentor' */
+.mentor-button {
+  background-color: #FFA500; /* Naranja para destacar */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.mentor-button:hover {
+  background-color: #e59400; /* Naranja más oscuro al hacer hover */
+}
+
+/* Ajustes de la tabla para la nueva columna */
+.table-layout th, .table-layout td {
+  padding: 12px;
+  border: 1px solid var(--input-color);
+  text-align: center;
+}
+
+.table-layout th {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.table-layout tr:nth-child(even) {
+  background-color: #F3F0FF;
+}
+
+.table-layout tr:hover {
+  background-color: #e8e4ff;
+}
+
+/* Estilo para la columna "Mentor" */
+.table-layout td:nth-child(5) {
+  text-align: center;
+}
+
+/* Responsividad para tablas */
+@media (max-width: 768px) {
+  .table-layout th, .table-layout td {
+    font-size: 0.9rem; /* Reducir el tamaño de la fuente */
+    padding: 8px; /* Reducir el relleno */
+  }
+
+  .mentor-button {
+    font-size: 0.9rem; /* Ajustar tamaño del botón */
+    padding: 8px 12px;
+  }
+}
+
+/* Botón de regresar para mantener consistencia */
+.return-button {
+  width: 100%;
+  padding: 12px 20px;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.return-button:hover {
+  background-color: #5a4bb2;
+}
