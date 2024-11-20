@@ -73,6 +73,7 @@ async function cambiarMentorUsuario(usuario) {
 
         if (response.ok) {
             usuario.es_mentor = nuevoEstado;
+            console.log("usuario " + usuario + " es " + nuevoEstado);
             actualizarTabla();
         } else {
             const errorText = await response.text();
@@ -119,15 +120,39 @@ function actualizarTabla(filteredUsers = usuarios) {
         // Columna de mentor
         const mentorCell = document.createElement('td');
         const mentorButton = document.createElement('button');
-        mentorButton.textContent = 'Cambiar Mentor';
-        mentorButton.classList.add('mentor-button');
-        mentorButton.addEventListener('click', () => cambiarMentorUsuario(usuario));
+        
+        // Ajustar el botón según el estado de mentor
+        if (usuario.es_mentor === 1) {
+            mentorButton.textContent = 'Sí';
+            mentorButton.classList.add('activate-button'); // Verde
+        } else {
+            mentorButton.textContent = 'No';
+            mentorButton.classList.add('deactivate-button'); // Rojo
+        }
+
+        // Validar si el usuario está desactivado
+        mentorButton.addEventListener('click', () => {
+            if (usuario.estado === 0) {
+                mentorButton.textContent = 'Usuario desactivado';
+                mentorButton.classList.add('disabled-button');
+                setTimeout(() => {
+                    mentorButton.textContent = usuario.es_mentor === 1 ? 'Sí' : 'No';
+                    mentorButton.classList.remove('disabled-button');
+                }, 2000); // Vuelve al estado original después de 2 segundos
+            } else {
+                cambiarMentorUsuario(usuario);
+            }
+        });
+
         mentorCell.appendChild(mentorButton);
         row.appendChild(mentorCell);
 
         tableBody.appendChild(row);
     });
 }
+
+
+
 
 // Función para manejar la búsqueda en tiempo real
 searchInput.addEventListener('input', () => {
