@@ -6,6 +6,20 @@
     <title>Administración - Ver Estadísticas</title>
     <link rel="stylesheet" href="/styles/style.css">
     <script src="../scripts/navigationHeader.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Estilo para el gráfico */
+        .chart-container {
+            width: 60%;
+            height: 200px;
+            margin: 0 auto;
+        }
+
+        canvas#statsChart {
+            width: 100% !important;
+            height: 100% !important;
+        }
+    </style>
 </head>
 <body>
     <!-- Header generado automáticamente -->
@@ -14,7 +28,12 @@
     <div class="wrapper">
         <h1>Estadísticas Generales</h1>
         <div id="error-message" class="error-message hidden"></div>
-        
+
+        <!-- Contenedor del gráfico -->
+        <div class="chart-container">
+            <canvas id="statsChart"></canvas>
+        </div>
+
         <div class="stats-container">
             <div class="stat-item">
                 <h2>Cantidad de Proyectos</h2>
